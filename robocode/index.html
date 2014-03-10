@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.7" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.7">
 <title>Robocode Tutorial</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -179,7 +178,7 @@ div.quoteblock, div.verseblock {
   margin-left: 1.0em;
   margin-right: 10%;
   border-left: 5px solid #f0f0f0;
-  color: #888;
+  color: #777777;
 }
 
 div.quoteblock > div.attribution {
@@ -349,7 +348,7 @@ div.colist td img {
   margin-bottom: 0.1em;
 }
 
-div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -407,8 +406,6 @@ span.underline { text-decoration: underline; }
 span.overline { text-decoration: overline; }
 span.line-through { text-decoration: line-through; }
 
-div.unbreakable { page-break-inside: avoid; }
-
 
 /*
  * xhtml11 specific
@@ -416,7 +413,7 @@ div.unbreakable { page-break-inside: avoid; }
  * */
 
 tt {
-  font-family: "Courier New", Courier, monospace;
+  font-family: monospace;
   font-size: inherit;
   color: navy;
 }
@@ -455,7 +452,7 @@ div.tableblock > table[frame="vsides"] {
  * */
 
 .monospaced {
-  font-family: "Courier New", Courier, monospace;
+  font-family: monospace;
   font-size: inherit;
   color: navy;
 }
@@ -538,6 +535,106 @@ body.manpage div.sectionbody {
 
 @media print {
   body.manpage div#toc { display: none; }
+}
+
+
+/*
+ * Theme specific overrides of the preceding (asciidoc.css) CSS.
+ *
+ */
+body {
+  font-family: Garamond, Georgia, serif;
+  font-size: 17px;
+  color: #3E4349;
+  line-height: 1.3em;
+}
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Garmond, Georgia, serif;
+  font-weight: normal;
+  border-bottom-width: 0;
+  color: #3E4349;
+}
+div.title, caption.title { color: #596673; font-weight: bold; }
+h1 { font-size: 240%; }
+h2 { font-size: 180%; }
+h3 { font-size: 150%; }
+h4 { font-size: 130%; }
+h5 { font-size: 115%; }
+h6 { font-size: 100%; }
+#header h1 { margin-top: 0; }
+#toc {
+  color: #444444;
+  line-height: 1.5;
+  padding-top: 1.5em;
+}
+#toctitle {
+  font-size: 20px;
+}
+#toc a {
+    border-bottom: 1px dotted #999999;
+    color: #444444 !important;
+    text-decoration: none !important;
+}
+#toc a:hover {
+    border-bottom: 1px solid #6D4100;
+    color: #6D4100 !important;
+    text-decoration: none !important;
+}
+div.toclevel1 { margin-top: 0.2em; font-size: 16px; }
+div.toclevel2 { margin-top: 0.15em; font-size: 14px; }
+em, dt, td.hdlist1 { color: black; }
+strong { color: #3E4349; }
+a { color: #004B6B; text-decoration: none; border-bottom: 1px dotted #004B6B; }
+a:visited { color: #615FA0; border-bottom: 1px dotted #615FA0; }
+a:hover { color: #6D4100; border-bottom: 1px solid #6D4100; }
+div.tableblock > table, table.tableblock { border: 3px solid #E8E8E8; }
+th.tableblock, td.tableblock { border: 1px solid #E8E8E8; }
+ul > li > * { color: #3E4349; }
+pre, tt, .monospaced { font-family: Consolas,Menlo,'Deja Vu Sans Mono','Bitstream Vera Sans Mono',monospace; }
+tt, .monospaced { font-size: 0.9em; color: black;
+}
+div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock > div.content { border-width: 0 0 0 3px; border-color: #E8E8E8; }
+div.verseblock { border-left-width: 0; margin-left: 3em; }
+div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
+div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
 }
 </style>
 <script type="text/javascript">
@@ -731,28 +828,32 @@ install: function(toclevels) {
 }
 
 }
-asciidoc.install();
+asciidoc.install(2);
 /*]]>*/
 </script>
 </head>
 <body class="article">
 <div id="header">
 <h1>Robocode Tutorial</h1>
-<span id="author">Prof. Valdir Stumm Júnior - &lt;valdir.stumm@blumenau.ifc.edu.br&gt;</span><br />
+<span id="author">Prof. Valdir Stumm Júnior - &lt;valdir.stumm@blumenau.ifc.edu.br&gt;</span><br>
 <span id="revdate">Instituto Federal Catarinense - Câmpus Blumenau</span>
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
 <h2 id="_introdução">1. Introdução</h2>
 <div class="sectionbody">
 <div class="paragraph"><p><span class="image">
-<img src="img/3.png" alt="img/3.png" />
+<img src="images/img/3.png" alt="images/img/3.png">
 </span> <strong><a href="http://robocode.sourceforge.net">Robocode</a></strong> é um jogo de programação, onde os desenvolvedores podem programar tanques de guerra e testá-los contra os tanques programados por outros desenvolvedores. O código que define o comportamento dos tanques pode ser escritos tanto em Java quanto em .NET.</p></div>
 <div class="paragraph"><p>Uma vez programados, os tanques (também chamados de <strong>robôs</strong>) são colocados em uma <strong>arena</strong> de combate. A partir do momento em que a <strong>batalha</strong> é iniciada, o programador passa a não poder mais influenciar no jogo, exceto pelo código que escreveu anteriormente e que irá comandar seu robô na batalha. O objetivo do jogo é simples: ser o único robô na arena a não ser destruído. Como é de se esperar, para cumprir tal objetivo, o programador deve criar um robô que seja capaz de evitar ao máximo os tiros dos adversários e também atingi-los sempre que possível.</p></div>
 <div class="paragraph"><p>Veja abaixo a janela principal do Robocode, na qual é possível a criação e visualização de batalhas, além da criação de novos robôs. A figura abaixo apresenta uma batalha em execução.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/4.png" alt="img/4.png" width="400" />
+<img src="images/img/4.png" alt="images/img/4.png" width="400">
 </div>
 </div>
 </div>
@@ -765,14 +866,14 @@ asciidoc.install();
 <h3 id="_instalação">2.1. Instalação</h3>
 <div class="paragraph"><p>Se você é usuário Ubuntu Linux, basta executar o seguinte comando:</p></div>
 <div class="literalblock">
-<div class="content">
-<pre><tt>sudo apt-get install robocode</tt></pre>
+<div class="content monospaced">
+<pre>sudo apt-get install robocode</pre>
 </div></div>
 <div class="paragraph"><p>Se você utiliza alguma versão do Windows, você deveria formatar sua máquina. Brincadeira, você deve baixar o arquivo .jar que contém os executáveis do projeto e rodá-lo em sua máquina. Mas antes disso, é necessário que você instale a máquina virtual Java em seu computador. O arquivo .jar está disponível para download na página oficial do projeto: <a href="http://sourceforge.net/projects/robocode/files/latest/">http://sourceforge.net/projects/robocode/files/latest/</a></p></div>
 <div class="paragraph"><p>Uma vez que o arquivo esteja em sua máquina, basta iniciá-lo com duplo clique. Caso o duplo clique não funcione, você ainda pode usar a linha de comando. Vá até o diretório onde está o arquivo .jar e execute:</p></div>
 <div class="literalblock">
-<div class="content">
-<pre><tt>java -jar nome_do_arquivo.jar</tt></pre>
+<div class="content monospaced">
+<pre>java -jar nome_do_arquivo.jar</pre>
 </div></div>
 <div class="paragraph"><p>Prossiga então a instalação. O instalador fará algumas perguntas, como o local onde será instalado o programa, se você deseja associar os arquivos de batalha com o robocode e se você deseja que seja criado um atalho no desktop. Você pode responder &#8220;Yes&#8221; a todas elas, sem problemas (a não ser que ele se ofereça para instalar alguma <em>toolbar</em> desgraçada).</p></div>
 </div>
@@ -780,26 +881,26 @@ asciidoc.install();
 <h3 id="_iniciando_o_robocode">2.2. Iniciando o Robocode</h3>
 <div class="paragraph"><p>Se você estiver utilizando Linux, abra um terminal e digite:</p></div>
 <div class="literalblock">
-<div class="content">
-<pre><tt>robocode</tt></pre>
+<div class="content monospaced">
+<pre>robocode</pre>
 </div></div>
 <div class="paragraph"><p>Se você estiver no Windows, formate sua máquina logo! Brincadeira de novo. Basta clicar no atalho deixado pelo instalador no Desktop e no menu iniciar.</p></div>
 <div class="paragraph"><p>Após um breve período sendo carregado, você verá a seguinte interface:</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/5.png" alt="img/5.png" width="400" />
+<img src="images/img/5.png" alt="images/img/5.png" width="400">
 </div>
 </div>
 <div class="paragraph"><p>Para iniciar uma batalha, clique no menu <em>Battle</em> → <em>New</em>. Uma janela de configuração da nova batalha será aberta. Nessa janela, você deve selecionar os robôs que deseja que sejam inclusos na batalha, clicar no botão <em>Add</em>, e então clicar em <em>Start Battle</em>. Veja a figura abaixo, demonstrando a criação de uma batalha.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/6.png" alt="img/6.png" width="400" />
+<img src="images/img/6.png" alt="images/img/6.png" width="400">
 </div>
 </div>
 <div class="paragraph"><p>Após clicar em <em>Start Battle</em>, você verá a tela abaixo com a batalha já iniciada:</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/7.png" alt="img/7.png" width="400" />
+<img src="images/img/7.png" alt="images/img/7.png" width="400">
 </div>
 </div>
 <div class="paragraph"><p>Para melhor entendermos o campo de batalha acima, observe os elementos numerados e veja abaixo o que cada um deles significa:</p></div>
@@ -847,7 +948,7 @@ asciidoc.install();
 <div class="paragraph"><p>Vamos agora criar o nosso primeiro robô. Na janela principal do Robocode, clique em <em>Robot</em> → <em>Editor</em>. Isso fará com que uma nova janela, chamada de <em>Robot Editor</em>, seja aberta.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/8.png" alt="img/8.png" width="400" />
+<img src="images/img/8.png" alt="images/img/8.png" width="400">
 </div>
 </div>
 <div class="paragraph"><p>É nessa janela que vamos criar o código Java que irá controlar nosso robô. Para isso, clique em <em>New</em> → <em>Robot</em>. Uma caixa de diálogo será aberta, perguntando qual o nome que você deseja dar ao novo robô. Escolha um nome e clique em OK. O nome escolhido será o nome da classe Java que será criada. Dessa forma, procure dar um nome que siga as convenções para nomenclatura de classes em Java.</p></div>
@@ -855,7 +956,7 @@ asciidoc.install();
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<div class="title">Note</div>
+<img src="./images/icons/note.png" alt="Note">
 </td>
 <td class="content">
 <div class="title">Isaac Asimov</div>
@@ -865,28 +966,28 @@ asciidoc.install();
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="img/9.png" alt="img/9.png" width="200" />
+<img src="images/img/9.png" alt="images/img/9.png" width="200">
 </div>
 </div>
 <div class="paragraph"><p>Após clicar em <em>OK</em>, uma nova janela será aberta perguntando pelo nome do pacote para armazenar o robô. Escolha as iniciais do seu nome como nome do pacote. Feito isso, um editor de textos com um código Java pré-definido será aberto. A figura abaixo mostra tal janela.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/10.png" alt="img/10.png" width="400" />
+<img src="images/img/10.png" alt="images/img/10.png" width="400">
 </div>
 </div>
-<div class="paragraph"><p>Nessa janela, você escreve o código Java e pode compilá-lo no menu <em>Compiler</em> → <em>Compile</em> (ou <tt>ctrl+b</tt>). Se a compilação tiver ocorrido sem erros, você verá uma janela igual a mostrada na figura abaixo.</p></div>
+<div class="paragraph"><p>Nessa janela, você escreve o código Java e pode compilá-lo no menu <em>Compiler</em> → <em>Compile</em> (ou <span class="monospaced">ctrl+b</span>). Se a compilação tiver ocorrido sem erros, você verá uma janela igual a mostrada na figura abaixo.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/11.png" alt="img/11.png" width="300" />
+<img src="images/img/11.png" alt="images/img/11.png" width="300">
 </div>
 </div>
-<div class="paragraph"><p>Após ter compilado o código, o seu robô foi gerado em um arquivo <tt>.class</tt>. Agora você poderá testar o novo robô em uma batalha com outros robôs.</p></div>
+<div class="paragraph"><p>Após ter compilado o código, o seu robô foi gerado em um arquivo <span class="monospaced">.class</span>. Agora você poderá testar o novo robô em uma batalha com outros robôs.</p></div>
 <div class="sect2">
 <h3 id="_testando_o_robô">3.1. Testando o Robô</h3>
 <div class="paragraph"><p>Volte para a janela principal do Robocode e clique em <em>Battle</em> → <em>New</em>. Será aberta a janela para você selecionar os robôs que devem compor a batalha. Nessa janela, escolha alguns robôs, incluindo o robô recém criado. Feito isso, clique em <em>Start Battle</em> e veja o seu robô em ação.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/12.png" alt="img/12.png" width="400" />
+<img src="images/img/12.png" alt="images/img/12.png" width="400">
 </div>
 </div>
 <div class="paragraph"><p>A figura acima mostra a janela de criação de uma batalha, mostrando a inclusão do robô recém criado.</p></div>
@@ -899,13 +1000,13 @@ asciidoc.install();
 <div class="paragraph"><p>Nosso robô é composto por três elementos: arma, radar e corpo do veículo. A figura abaixo mostra os componentes de um robô.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/13.png" alt="img/13.png" width="200" />
+<img src="images/img/13.png" alt="images/img/13.png" width="200">
 </div>
 </div>
-<div class="paragraph"><p>O <strong>radar</strong> é um componente que pode ser rotacionado e que é o responsável por detectar a presença de um adversário. Quando um adversário for detectado, um evento é disparado no robô, o que faz com que o método <tt>onScannedRobot</tt> seja chamado (mais sobre isso nas seções seguintes). O radar é rotacionado em nosso código através de chamadas aos métodos <tt>turnRadarLeft</tt> e <tt>turnRadarRight</tt>, que estão implementados na classe <tt>Robot</tt>.</p></div>
-<div class="paragraph"><p>A <strong>arma</strong>, como você deve imaginar, é responsável por emitir os tiros. Assim como o radar, a arma pode ser rotacionada através dos métodos <tt>turnGunLeft</tt> e <tt>turnGunRight</tt>, de forma que seja direcionada aos adversários.</p></div>
-<div class="paragraph"><p>O <strong>corpo do veículo</strong> também pode ser rotacionado, através de chamadas aos métodos <tt>turnLeft</tt> e <tt>turnRight</tt>, e pode andar para frente e para trás, através dos métodos <tt>ahead</tt> e <tt>back</tt>, respectivamente.</p></div>
-<div class="paragraph"><p>Assim, todos esses componentes podem ser controlados pelo código Java que escrevermos, usando os métodos apresentados acima. Por padrão, os 3 componentes estão &#8220;grudados&#8221; uns aos outros, de forma que ao girar o corpo do veículo, estaremos girando também a arma e o radar. É possível desacoplar esses componentes chamando os métodos <tt>setAdjustGunForRobotTurn(true)</tt> e <tt>setAdjustRadarForGunTurn(true)</tt>.</p></div>
+<div class="paragraph"><p>O <strong>radar</strong> é um componente que pode ser rotacionado e que é o responsável por detectar a presença de um adversário. Quando um adversário for detectado, um evento é disparado no robô, o que faz com que o método <span class="monospaced">onScannedRobot</span> seja chamado (mais sobre isso nas seções seguintes). O radar é rotacionado em nosso código através de chamadas aos métodos <span class="monospaced">turnRadarLeft</span> e <span class="monospaced">turnRadarRight</span>, que estão implementados na classe <span class="monospaced">Robot</span>.</p></div>
+<div class="paragraph"><p>A <strong>arma</strong>, como você deve imaginar, é responsável por emitir os tiros. Assim como o radar, a arma pode ser rotacionada através dos métodos <span class="monospaced">turnGunLeft</span> e <span class="monospaced">turnGunRight</span>, de forma que seja direcionada aos adversários.</p></div>
+<div class="paragraph"><p>O <strong>corpo do veículo</strong> também pode ser rotacionado, através de chamadas aos métodos <span class="monospaced">turnLeft</span> e <span class="monospaced">turnRight</span>, e pode andar para frente e para trás, através dos métodos <span class="monospaced">ahead</span> e <span class="monospaced">back</span>, respectivamente.</p></div>
+<div class="paragraph"><p>Assim, todos esses componentes podem ser controlados pelo código Java que escrevermos, usando os métodos apresentados acima. Por padrão, os 3 componentes estão &#8220;grudados&#8221; uns aos outros, de forma que ao girar o corpo do veículo, estaremos girando também a arma e o radar. É possível desacoplar esses componentes chamando os métodos <span class="monospaced">setAdjustGunForRobotTurn(true)</span> e <span class="monospaced">setAdjustRadarForGunTurn(true)</span>.</p></div>
 <div class="paragraph"><p>Na próxima seção, vamos conhecer um pouco mais sobre a orientação do nosso robô na arena de batalha.</p></div>
 </div>
 </div>
@@ -913,51 +1014,49 @@ asciidoc.install();
 <h2 id="_orientação_na_arena">5. Orientação na arena</h2>
 <div class="sectionbody">
 <div class="paragraph"><p><span class="image">
-<img src="img/14.png" alt="img/14.png" width="100" />
+<img src="images/img/14.png" alt="images/img/14.png" width="100">
 </span>
 Antes de qualquer coisa, precisamos conhecer a arena de batalha. A arena é uma estrutura definida pelo sistema de coordenadas cartesianas, onde a origem (0,0) está no canto inferior esquerdo da tela. Tanto a altura (battlefield_height) quando a largura (battlefield_width) da arena podem ser configuradas na própria interface de criação de batalhas.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/15.png" alt="img/15.png" width="400" />
+<img src="images/img/15.png" alt="images/img/15.png" width="400">
 </div>
 </div>
 <div class="sect2">
 <h3 id="_heading">5.1. Heading</h3>
 <div class="paragraph"><p>Uma propriedade muito importante é o <strong><em>heading</em></strong> do robô. O <em>heading</em> indica a rotação do robô com relação ao &#8220;norte&#8221; (topo) da tela. A figura acima mostra os valores de <em>heading</em> de um robô dependendo de como ele está rotacionado dentro da arena. Veja alguns exemplos de valores da propriedade <em>heading</em> de um robô:</p></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 1. Heading do nosso robô</caption>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col style="width:25%;">
+<col style="width:25%;">
+<col style="width:25%;">
+<col style="width:25%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/16.png" alt="img/16.png" width="50" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/16.png" alt="images/img/16.png" width="50">
 </span></p></td>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/17.png" alt="img/17.png" width="50" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/17.png" alt="images/img/17.png" width="50">
 </span></p></td>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/18.png" alt="img/18.png" width="50" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/18.png" alt="images/img/18.png" width="50">
 </span></p></td>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/19.png" alt="img/19.png" width="50" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/19.png" alt="images/img/19.png" width="50">
 </span></p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">0°</p></td>
-<td align="left" valign="top"><p class="table">90°</p></td>
-<td align="left" valign="top"><p class="table">180°</p></td>
-<td align="left" valign="top"><p class="table">270°</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">0°</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">90°</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">180°</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">270°</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <div class="paragraph"><p>O valor dessa propriedade será sempre o ângulo que a frente do robô está do topo da arena.</p></div>
 </div>
 <div class="sect2">
@@ -965,69 +1064,65 @@ cellspacing="0" cellpadding="4">
 <div class="paragraph"><p>Quando nosso robô detecta um robô inimigo através do radar, é possível obtermos algumas informações sobre esse inimigo. Uma dessas informações é o que chamamos de <strong><em>bearing</em></strong>. Essa propriedade nos diz o ângulo em que um inimigo encontrado pelo radar está do <em>heading</em> (da frente) do nosso robô.</p></div>
 <div class="paragraph"><p>Veja as imagens abaixo para ter uma melhor idéia sobre o que o <em>bearing</em> significa. Em todas as imagens, o nosso robô é representado pelo robô cinza e o adversário detectado pelo radar é representado pelo robô vermelho.</p></div>
 <div class="paragraph"><p>Esta imagem mostra o caso em que nosso robô detecta um adversário e. Uma chamada a e.getBearing() retorna 90, ou seja, o bearing do adversário com relação ao nosso robô é 90°. Para atacá-lo, bastaria rotacionar a arma em 90° e dispará-la.</p></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 2. Exemplos de Bearing</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/20.png" alt="img/20.png" width="200" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/20.png" alt="images/img/20.png" width="200">
 </span></p></td>
-<td align="left" valign="top"><p class="table">Esta imagem mostra o caso em que nosso robô detecta um adversário e. Uma chamada a e.getBearing() retorna 90, ou seja, o bearing do adversário com relação ao nosso robô é 90°. Para atacá-lo, bastaria rotacionar a arma em 90° e dispará-la.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Esta imagem mostra o caso em que nosso robô detecta um adversário e. Uma chamada a e.getBearing() retorna 90, ou seja, o bearing do adversário com relação ao nosso robô é 90°. Para atacá-lo, bastaria rotacionar a arma em 90° e dispará-la.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/21.png" alt="img/21.png" width="200" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/21.png" alt="images/img/21.png" width="200">
 </span></p></td>
-<td align="left" valign="top"><p class="table">Esta imagem mostra o caso em que o bearing de nosso adversário é 0° com relação ao heading do nosso robô.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Esta imagem mostra o caso em que o bearing de nosso adversário é 0° com relação ao heading do nosso robô.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/22.png" alt="img/22.png" width="200" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/22.png" alt="images/img/22.png" width="200">
 </span></p></td>
-<td align="left" valign="top"><p class="table">Esta imagem mostra um adversário detectado em um ângulo de aproximadamente 45° com relação ao heading do nosso robô.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Esta imagem mostra um adversário detectado em um ângulo de aproximadamente 45° com relação ao heading do nosso robô.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/23.png" alt="img/23.png" width="200" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/23.png" alt="images/img/23.png" width="200">
 </span></p></td>
-<td align="left" valign="top"><p class="table">Esta imagem mostra um adversário (em vermelho) em um ângulo de 180° do heading do nosso robô (em cinza).</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Esta imagem mostra um adversário (em vermelho) em um ângulo de 180° do heading do nosso robô (em cinza).</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 <div class="paragraph"><p>Observe que o <em>bearing</em> é um valor relativo ao nosso <em>heading</em> e à posição de um adversário detectado pelo nosso radar. Assim, para cada adversário detectado teremos um valor de <em>bearing</em>, sempre relativo à frente de nosso robô.</p></div>
-<div class="paragraph"><p>Outro detalhe muito importante é que os valores obtidos através de chamadas a <tt>getBearing()</tt> estão sempre normalizados, isto é os valores estão sempre na faixa de -180° a +180°, ao invés de estarem na faixa de 0° a 360°, como era de se esperar. Assim, se um robô <tt>x</tt> estiver a um ângulo de 2° à esquerda do nosso robô, uma chamada a <tt>x.getBearing()</tt> irá retornar -2 e não 358. Isso facilita nossa vida e evita que nosso robô faça giros desnecessários.</p></div>
+<div class="paragraph"><p>Outro detalhe muito importante é que os valores obtidos através de chamadas a <span class="monospaced">getBearing()</span> estão sempre normalizados, isto é os valores estão sempre na faixa de -180° a +180°, ao invés de estarem na faixa de 0° a 360°, como era de se esperar. Assim, se um robô <span class="monospaced">x</span> estiver a um ângulo de 2° à esquerda do nosso robô, uma chamada a <span class="monospaced">x.getBearing()</span> irá retornar -2 e não 358. Isso facilita nossa vida e evita que nosso robô faça giros desnecessários.</p></div>
 <div class="paragraph"><p>Veja abaixo as figuras comparando o <em>bearing</em> normalizado com o plano polar tradicional.</p></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 3. Bearing normalizado vs plano de coordenadas polares</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/24.png" alt="img/24.png" width="300" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/24.png" alt="images/img/24.png" width="300">
 </span></p></td>
-<td align="left" valign="top"><p class="table"><span class="image">
-<img src="img/25.png" alt="img/25.png" width="300" />
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="image">
+<img src="images/img/25.png" alt="images/img/25.png" width="300">
 </span></p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">Bearing normalizado (-180°, +180°)</p></td>
-<td align="left" valign="top"><p class="table">Plano de coordenadas polares (0°, 360°)</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Bearing normalizado (-180°, +180°)</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Plano de coordenadas polares (0°, 360°)</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </div>
@@ -1039,31 +1134,31 @@ cellspacing="0" cellpadding="4">
 <div class="ulist"><ul>
 <li>
 <p>
-bate em uma parede (é chamado o método <tt>onHitWall()</tt>)
+bate em uma parede (é chamado o método <span class="monospaced">onHitWall()</span>)
 </p>
 </li>
 <li>
 <p>
-bate em um adversário (é chamado o método <tt>onHitRobot()</tt>)
+bate em um adversário (é chamado o método <span class="monospaced">onHitRobot()</span>)
 </p>
 </li>
 <li>
 <p>
-é atingido por uma bala (é chamado o método <tt>onHitByBullet()</tt>)
+é atingido por uma bala (é chamado o método <span class="monospaced">onHitByBullet()</span>)
 </p>
 </li>
 <li>
 <p>
-detecta um adversário no radar (é chamado o método <tt>onScannedRobot()</tt>)
+detecta um adversário no radar (é chamado o método <span class="monospaced">onScannedRobot()</span>)
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>Além das situações acima listadas, nosso robô também é capaz de sentir quando uma bala que disparou atinge um adversário (<tt>onBulletHit()</tt>), uma parede (<tt>onBulletMissed()</tt>) ou outra bala (<tt>onBulletHitBullet()</tt>).</p></div>
-<div class="paragraph"><p>Cada vez que uma das situações acima ocorre, um método específico do nosso robô é chamado. Assim, devemos implementar dentro de cada método o comportamento que queremos que nosso robô tenha em cada caso. Por exemplo, se quisermos que nosso robô reaja ao bater em uma parede, devemos implementar o método <tt>onHitWall()</tt> na classe que representa o nosso robô com o comportamento desejado.</p></div>
+<div class="paragraph"><p>Além das situações acima listadas, nosso robô também é capaz de sentir quando uma bala que disparou atinge um adversário (<span class="monospaced">onBulletHit()</span>), uma parede (<span class="monospaced">onBulletMissed()</span>) ou outra bala (<span class="monospaced">onBulletHitBullet()</span>).</p></div>
+<div class="paragraph"><p>Cada vez que uma das situações acima ocorre, um método específico do nosso robô é chamado. Assim, devemos implementar dentro de cada método o comportamento que queremos que nosso robô tenha em cada caso. Por exemplo, se quisermos que nosso robô reaja ao bater em uma parede, devemos implementar o método <span class="monospaced">onHitWall()</span> na classe que representa o nosso robô com o comportamento desejado.</p></div>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<div class="title">Note</div>
+<img src="./images/icons/note.png" alt="Note">
 </td>
 <td class="content">
 <div class="title">Mas quem chama esse método quando o robô bate na parede?</div>
@@ -1113,71 +1208,69 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #000000">00028:</span>
 <span style="color: #000000">00029:</span> <span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="paragraph"><p>A primeira linha do código acima é necessária para que o nosso código faça parte do pacote que definimos no momento da criação do robô (com as iniciais do nome do autor). Já a segunda linha é quem permite que utilizemos classes e métodos disponíveis na biblioteca robocode em nosso código.</p></div>
-<div class="paragraph"><p>A linha 4 declara a nossa classe <tt>Robbie</tt>. Quem ainda não conhece o mecanismo de herança da linguagem Java pode estar estranhando aquele ``extends Robot` ali. Estender uma classe significa que a nossa classe será construída como uma extensão de uma outra classe. Isto é, a classe <tt>Robbie irá conter tudo que definirmos em nossa classe, além do que já está definido na classe `Robot</tt>. Objetos da classe <tt>Robot</tt> são orientados a eventos, isto é, algumas ocorrências disparam eventos no objeto e a tais eventos são vinculados a métodos que serão chamados quando da ocorrência de tais eventos. Por exemplo, quando o robô é atingido por um tiro de um adversário, o método <tt>onHitByBullet</tt> é chamado. Assim, para definir <strong>o que</strong> o nosso robô fará quando for atingido por um tiro, basta que implementemos o método <tt>onHitByBullet</tt> na classe que representa o nosso robô.</p></div>
+<div class="paragraph"><p>A linha 4 declara a nossa classe <span class="monospaced">Robbie</span>. Quem ainda não conhece o mecanismo de herança da linguagem Java pode estar estranhando aquele ``extends Robot` ali. Estender uma classe significa que a nossa classe será construída como uma extensão de uma outra classe. Isto é, a classe <span class="monospaced">Robbie irá conter tudo que definirmos em nossa classe, além do que já está definido na classe `Robot</span>. Objetos da classe <span class="monospaced">Robot</span> são orientados a eventos, isto é, algumas ocorrências disparam eventos no objeto e a tais eventos são vinculados a métodos que serão chamados quando da ocorrência de tais eventos. Por exemplo, quando o robô é atingido por um tiro de um adversário, o método <span class="monospaced">onHitByBullet</span> é chamado. Assim, para definir <strong>o que</strong> o nosso robô fará quando for atingido por um tiro, basta que implementemos o método <span class="monospaced">onHitByBullet</span> na classe que representa o nosso robô.</p></div>
 <div class="paragraph"><p>Veja abaixo os principais métodos que podemos implementar em nosso código e o evento que dispara tal método.</p></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
 <caption class="title">Table 4. Métodos e eventos</caption>
-<col width="50%" />
-<col width="50%" />
+<col style="width:50%;">
+<col style="width:50%;">
 <thead>
 <tr>
-<th align="left" valign="top">Método </th>
-<th align="left" valign="top">Disparado quando &#8230;</th>
+<th class="tableblock halign-left valign-top" >Método </th>
+<th class="tableblock halign-left valign-top" >Disparado quando &#8230;</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>run</tt></p></td>
-<td align="left" valign="top"><p class="table">o jogo é iniciado.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">run</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">o jogo é iniciado.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onHitByBullet</tt></p></td>
-<td align="left" valign="top"><p class="table">o robô é atingido por uma bala.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onHitByBullet</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">o robô é atingido por uma bala.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onScannedRobot</tt></p></td>
-<td align="left" valign="top"><p class="table">um robô inimigo é detectado pelo radar do robô.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onScannedRobot</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">um robô inimigo é detectado pelo radar do robô.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onWin</tt></p></td>
-<td align="left" valign="top"><p class="table">o robô vence o jogo.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onWin</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">o robô vence o jogo.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onHitRobot</tt></p></td>
-<td align="left" valign="top"><p class="table">quando o robô bate em um adversário.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onHitRobot</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">quando o robô bate em um adversário.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onHitWall</tt></p></td>
-<td align="left" valign="top"><p class="table">quando o robô bate na parede.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onHitWall</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">quando o robô bate na parede.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onBulletHit</tt></p></td>
-<td align="left" valign="top"><p class="table">quando um tiro disparado pelo robô acerta um adversário.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onBulletHit</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">quando um tiro disparado pelo robô acerta um adversário.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onBulletMissed</tt></p></td>
-<td align="left" valign="top"><p class="table">quando um tiro disparado pelo robô acerta uma parede.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onBulletMissed</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">quando um tiro disparado pelo robô acerta uma parede.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onBulletHitBullet</tt></p></td>
-<td align="left" valign="top"><p class="table">quando a bala disparada pelo robô é interceptada por outra bala.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onBulletHitBullet</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">quando a bala disparada pelo robô é interceptada por outra bala.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onDeath</tt></p></td>
-<td align="left" valign="top"><p class="table">quando o robô nosso morre.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onDeath</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">quando o robô nosso morre.</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table"><tt>onRobotDeath</tt></p></td>
-<td align="left" valign="top"><p class="table">quando algum robô adversário morre.</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">onRobotDeath</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">quando algum robô adversário morre.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="paragraph"><p>Assim, o primeiro método implementado será o <tt>run</tt>, que é chamado no momento em que a batalha é iniciada. É nesse método que vamos escrever o que o nosso robô terá como comportamento padrão. Em geral, esse método será composto por um <em>loop</em> infinito que irá repetir algumas ações, como girar o radar, se movimentar, dentre outras. É importante rotacionar o radar nesse método para que nosso robô possa detectar os inimigos fazendo com que o método <tt>onScannedRobot</tt> seja disparado.</p></div>
+<div class="paragraph"><p>Assim, o primeiro método implementado será o <span class="monospaced">run</span>, que é chamado no momento em que a batalha é iniciada. É nesse método que vamos escrever o que o nosso robô terá como comportamento padrão. Em geral, esse método será composto por um <em>loop</em> infinito que irá repetir algumas ações, como girar o radar, se movimentar, dentre outras. É importante rotacionar o radar nesse método para que nosso robô possa detectar os inimigos fazendo com que o método <span class="monospaced">onScannedRobot</span> seja disparado.</p></div>
 <div class="paragraph"><p>O código a seguir apresenta o código gerado por padrão para o método run quando criamos um robô.</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.6
@@ -1217,15 +1310,15 @@ Rotacione a arma 360 graus para a direita.
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<div class="title">Note</div>
+<img src="./images/icons/note.png" alt="Note">
 </td>
 <td class="content">
 <div class="title">Herança</div>
-<div class="paragraph"><p>Como já comentado anteriormente, nosso robô estende uma classe já existente, chamada de <tt>Robot</tt>. Ao estender tal classe, que já foi previamente implementada por alguém, nosso robô herda todas as características e comportamento da classe <tt>Robot</tt>. Ou seja, todos os métodos que foram definidos na classe <tt>Robot</tt> estão disponíveis para serem chamados pelo nosso robô. Os métodos <tt>ahead</tt>, <tt>back</tt> e <tt>turnGunRight</tt> são exemplos de métodos herdados pelo nosso robô. Além de podermos chamar tais métodos, o mecanismo de herança permite que sobrescrevamos alguns métodos da classe <tt>Robot</tt>. Por exemplo, se nós implementarmos o método onScannedRobot em nossa classe, quando um robô for detectado pelo nosso radar, o método a ser chamado será o nosso <tt>onScannedRobot</tt> e não o método <tt>onScannedRobot</tt> da classe <tt>Robot</tt>. Isso nos dá muita flexibilidade e permite que especifiquemos comportamentos particulares para o nosso robô.</p></div>
+<div class="paragraph"><p>Como já comentado anteriormente, nosso robô estende uma classe já existente, chamada de <span class="monospaced">Robot</span>. Ao estender tal classe, que já foi previamente implementada por alguém, nosso robô herda todas as características e comportamento da classe <span class="monospaced">Robot</span>. Ou seja, todos os métodos que foram definidos na classe <span class="monospaced">Robot</span> estão disponíveis para serem chamados pelo nosso robô. Os métodos <span class="monospaced">ahead</span>, <span class="monospaced">back</span> e <span class="monospaced">turnGunRight</span> são exemplos de métodos herdados pelo nosso robô. Além de podermos chamar tais métodos, o mecanismo de herança permite que sobrescrevamos alguns métodos da classe <span class="monospaced">Robot</span>. Por exemplo, se nós implementarmos o método onScannedRobot em nossa classe, quando um robô for detectado pelo nosso radar, o método a ser chamado será o nosso <span class="monospaced">onScannedRobot</span> e não o método <span class="monospaced">onScannedRobot</span> da classe <span class="monospaced">Robot</span>. Isso nos dá muita flexibilidade e permite que especifiquemos comportamentos particulares para o nosso robô.</p></div>
 </td>
 </tr></table>
 </div>
-<div class="paragraph"><p>O segundo método que vamos analisar é <tt>onScannedRobot</tt>. Esse método é disparado quando um robô é encontrado pelo nosso radar. No código abaixo, ao encontrar um robô no radar, o nosso robô dispara um tiro de intensidade 1, com uma chamada a <tt>fire(1)</tt>.</p></div>
+<div class="paragraph"><p>O segundo método que vamos analisar é <span class="monospaced">onScannedRobot</span>. Esse método é disparado quando um robô é encontrado pelo nosso radar. No código abaixo, ao encontrar um robô no radar, o nosso robô dispara um tiro de intensidade 1, com uma chamada a <span class="monospaced">fire(1)</span>.</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
@@ -1236,8 +1329,8 @@ http://www.gnu.org/software/src-highlite -->
     <span style="font-weight: bold"><span style="color: #000000">fire</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">);</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="paragraph"><p>Aqui poderíamos incluir testes para verificar a distância do robô descoberto pelo radar para definir a intensidade do tiro que iríamos realizar, afinal, quanto mais longe do robô, maiores são as chances de ele desviar do tiro. Esse tipo de refinamento é importante porque, a cada tiro lançado, nosso robô perde energia proporcional à sua intensidade. A intensidade de um tiro pode variar na faixa contínua de 1.0 até 3.0.</p></div>
-<div class="paragraph"><p>Vamos a um exemplo: nosso robô deu um tiro de intensidade <tt>x</tt> e perde <tt>x</tt> pontos como consequência do tiro. Se o tiro atingir o adversário, este irá perder <tt>4*x</tt> pontos e nosso robô irá ganhar <tt>3*x</tt> pontos. Além dessas regras de pontuação, existem outras, que serão explicadas na seção apropriada.</p></div>
-<div class="paragraph"><p>Outro método implementado no código do nosso robô é o método <tt>onHitByBullet</tt>. Esse método será chamado quando nosso robô for atingido por uma bala. Quando isso acontecer, nosso robô será rotacionado para a esquerda tantos graus quantos forem necessários (90° - <em>bearing</em> do inimigo) para que ele fique a 90° com relação ao inimigo, podendo assim fugir mais facilmente da linha de ataque.</p></div>
+<div class="paragraph"><p>Vamos a um exemplo: nosso robô deu um tiro de intensidade <span class="monospaced">x</span> e perde <span class="monospaced">x</span> pontos como consequência do tiro. Se o tiro atingir o adversário, este irá perder <span class="monospaced">4*x</span> pontos e nosso robô irá ganhar <span class="monospaced">3*x</span> pontos. Além dessas regras de pontuação, existem outras, que serão explicadas na seção apropriada.</p></div>
+<div class="paragraph"><p>Outro método implementado no código do nosso robô é o método <span class="monospaced">onHitByBullet</span>. Esse método será chamado quando nosso robô for atingido por uma bala. Quando isso acontecer, nosso robô será rotacionado para a esquerda tantos graus quantos forem necessários (90° - <em>bearing</em> do inimigo) para que ele fique a 90° com relação ao inimigo, podendo assim fugir mais facilmente da linha de ataque.</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
@@ -1247,10 +1340,10 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #FF0000">{</span>
     <span style="font-weight: bold"><span style="color: #000000">turnLeft</span></span><span style="color: #990000">(</span><span style="color: #993399">90</span> <span style="color: #990000">-</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getBearing</span></span><span style="color: #990000">());</span>
 <span style="color: #FF0000">}</span></tt></pre></div></div>
-<div class="paragraph"><p>O princípio dessa rotação é simples: rotacione para a esquerda o quanto faltar para que o ângulo do nosso robô fique a 90° do robô adversário, que é o resultado da operação <tt>90 – e.getBearing()</tt>. No futuro, veremos mais sobre a geometria dos elementos no campo de batalha.</p></div>
+<div class="paragraph"><p>O princípio dessa rotação é simples: rotacione para a esquerda o quanto faltar para que o ângulo do nosso robô fique a 90° do robô adversário, que é o resultado da operação <span class="monospaced">90 – e.getBearing()</span>. No futuro, veremos mais sobre a geometria dos elementos no campo de batalha.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/27.png" alt="img/27.png" width="400" />
+<img src="images/img/27.png" alt="images/img/27.png" width="400">
 </div>
 </div>
 <div class="sect2">
@@ -1267,10 +1360,10 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>Cada robô possui seu nível de energia e todos participantes iniciam cada rodada com nível de energia em 100. Quando atinge o nível de energia 0, o robô explode, saindo da rodada atual do jogo, voltando somente na rodada seguinte.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/28.png" alt="img/28.png" width="400" />
+<img src="images/img/28.png" alt="images/img/28.png" width="400">
 </div>
 </div>
-<div class="paragraph"><p>Um robô pode emitir tiros de intensidades que podem variar na faixa de 1.0 até 3.0. O dano causado pelo tiro irá depender diretamente da sua intensidade. Um tiro de intensidade <tt>x</tt> irá causar um dano de <tt>4*x</tt> no adversário, mas se <tt>x &gt; 1</tt>, há um dano adicional de <tt>2*(x–1)</tt>. Além disso, ao disparar um tiro de intensidade <tt>x</tt>, o robô perde <tt>x</tt> pontos de energia. Quando o tiro disparado por um robô atinge um adversário, o robô que deu o tiro recebe de volta <tt>3*x</tt> pontos de energia. Quando dois robôs se chocam, cada um deles perde 0.6 ponto de energia. Choques contra a parede causam, em geral, 3 pontos de dano à energia do robô (em robôs mais avançados, a velocidade do mesmo é levada em conta).</p></div>
+<div class="paragraph"><p>Um robô pode emitir tiros de intensidades que podem variar na faixa de 1.0 até 3.0. O dano causado pelo tiro irá depender diretamente da sua intensidade. Um tiro de intensidade <span class="monospaced">x</span> irá causar um dano de <span class="monospaced">4*x</span> no adversário, mas se <span class="monospaced">x &gt; 1</span>, há um dano adicional de <span class="monospaced">2*(x–1)</span>. Além disso, ao disparar um tiro de intensidade <span class="monospaced">x</span>, o robô perde <span class="monospaced">x</span> pontos de energia. Quando o tiro disparado por um robô atinge um adversário, o robô que deu o tiro recebe de volta <span class="monospaced">3*x</span> pontos de energia. Quando dois robôs se chocam, cada um deles perde 0.6 ponto de energia. Choques contra a parede causam, em geral, 3 pontos de dano à energia do robô (em robôs mais avançados, a velocidade do mesmo é levada em conta).</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1282,11 +1375,11 @@ http://www.gnu.org/software/src-highlite -->
 <div class="paragraph"><p>É muito comum o nosso robô bater contra a parede. Quando isso ocorre, nosso robô perde pontos de energia. Se nada fizermos ao bater contra a parede, o nosso robô permanecerá empurrando ela, o que irá drenar rapidamente a energia dele. Assim, ao encontrar uma parede, temos que fazer com que o robô gire seu corpo para o outro lado e ande em frente. Veja abaixo uma imagem que mostra algumas situações de um robô batendo nas paredes e as rotações necessárias para que ele se vire completamente.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/29.png" alt="img/29.png" width="400" />
+<img src="images/img/29.png" alt="images/img/29.png" width="400">
 </div>
 </div>
 <div class="paragraph"><p>Outra técnica poderia fazer com que o robô fosse rotacionado para a diagonal da parede, caso bata contra ela. O importante é rotacionar o robô, de forma que ao andarmos para frente, nos distanciemos da parede.</p></div>
-<div class="paragraph"><p>Para seguir a abordagem de uma rotacionar o robô na direção contrária da parede, podemos implementar o método <tt>onHitWall</tt> da seguinte forma:</p></div>
+<div class="paragraph"><p>Para seguir a abordagem de uma rotacionar o robô na direção contrária da parede, podemos implementar o método <span class="monospaced">onHitWall</span> da seguinte forma:</p></div>
 <div class="listingblock">
 <div class="content"><!-- Generator: GNU source-highlight 3.1.6
 by Lorenzo Bettini
@@ -1299,11 +1392,11 @@ http://www.gnu.org/software/src-highlite -->
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<div class="title">Note</div>
+<img src="./images/icons/note.png" alt="Note">
 </td>
 <td class="content">
 <div class="title">Math.abs</div>
-<div class="paragraph"><p>O método <tt>Math.abs</tt> retorna o valor absoluto do número passado a ele como parâmetro.</p></div>
+<div class="paragraph"><p>O método <span class="monospaced">Math.abs</span> retorna o valor absoluto do número passado a ele como parâmetro.</p></div>
 </td>
 </tr></table>
 </div>
@@ -1316,13 +1409,13 @@ http://www.gnu.org/software/src-highlite -->
 <h3 id="_mirando_o_adversário">9.3. Mirando o adversário</h3>
 <div class="paragraph"><p>Quando nosso robô detecta um adversário através do radar, devemos logo rotacionar nossa arma para a direção do adversário encontrado. O ângulo que devemos rotacionar a arma é obtido através de um cálculo bem simples:</p></div>
 <div class="literalblock">
-<div class="content">
-<pre><tt>heading do nosso robô – heading da arma + bearing do adversário</tt></pre>
+<div class="content monospaced">
+<pre>heading do nosso robô – heading da arma + bearing do adversário</pre>
 </div></div>
 <div class="paragraph"><p>A figura abaixo mostra um exemplo de quanto devemos rotacionar nossa arma para mirar no adversário detectado.</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="img/30.png" alt="img/30.png" width="300" />
+<img src="images/img/30.png" alt="images/img/30.png" width="300">
 </div>
 </div>
 <div class="paragraph"><p>Veja um exemplo de código:</p></div>
@@ -1343,10 +1436,10 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 </div>
 </div>
-<div id="footnotes"><hr /></div>
+<div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-03-09 16:19:56 BRT
+Last updated 2014-03-09 21:19:30 BRT
 </div>
 </div>
 </body>
