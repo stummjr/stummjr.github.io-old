@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.7">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>Robocode Tutorial</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -602,6 +602,8 @@ div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock
 div.verseblock { border-left-width: 0; margin-left: 3em; }
 div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
 div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+
+
 @media screen {
   body {
     max-width: 50em; /* approximately 80 characters wide */
@@ -831,6 +833,18 @@ install: function(toclevels) {
 asciidoc.install(2);
 /*]]>*/
 </script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48870410-1', 'stummjr.github.io');
+  ga('send', 'pageview');
+
+</script>
+
 </head>
 <body class="article">
 <div id="header">
@@ -838,7 +852,6 @@ asciidoc.install(2);
 <span id="author">Prof. Valdir Stumm Júnior - &lt;valdir.stumm@blumenau.ifc.edu.br&gt;</span><br>
 <span id="revdate">Instituto Federal Catarinense - Câmpus Blumenau</span>
 <div id="toc">
-  <div id="toctitle">Sumário</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
 </div>
 </div>
@@ -956,7 +969,6 @@ asciidoc.install(2);
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<img src="./images/icons/note.png" alt="Nota">
 </td>
 <td class="content">
 <div class="title">Isaac Asimov</div>
@@ -1029,7 +1041,6 @@ Antes de qualquer coisa, precisamos conhecer a arena de batalha. A arena é uma 
 style="
 width:100%;
 ">
-<caption class="title">Tabela 1. Heading do nosso robô</caption>
 <col style="width:25%;">
 <col style="width:25%;">
 <col style="width:25%;">
@@ -1068,7 +1079,6 @@ width:100%;
 style="
 width:100%;
 ">
-<caption class="title">Tabela 2. Exemplos de Bearing</caption>
 <col style="width:50%;">
 <col style="width:50%;">
 <tbody>
@@ -1105,7 +1115,6 @@ width:100%;
 style="
 width:100%;
 ">
-<caption class="title">Tabela 3. Bearing normalizado vs plano de coordenadas polares</caption>
 <col style="width:50%;">
 <col style="width:50%;">
 <tbody>
@@ -1158,7 +1167,6 @@ detecta um adversário no radar (é chamado o método <span class="monospaced">o
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<img src="./images/icons/note.png" alt="Nota">
 </td>
 <td class="content">
 <div class="title">Mas quem chama esse método quando o robô bate na parede?</div>
@@ -1178,35 +1186,35 @@ detecta um adversário no radar (é chamado o método <span class="monospaced">o
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><tt><span style="color: #000000">00001:</span> <span style="font-weight: bold"><span style="color: #000080">package</span></span> vsj<span style="color: #990000">;</span>
-<span style="color: #000000">00002:</span> <span style="font-weight: bold"><span style="color: #000080">import</span></span> robocode<span style="color: #990000">.*;</span>
-<span style="color: #000000">00003:</span>
-<span style="color: #000000">00004:</span>
-<span style="color: #000000">00005:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Robbie</span> <span style="font-weight: bold"><span style="color: #0000FF">extends</span></span> Robot
-<span style="color: #000000">00006:</span> <span style="color: #FF0000">{</span>
-<span style="color: #000000">00007:</span>
-<span style="color: #000000">00008:</span>         <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">run</span></span><span style="color: #990000">()</span>
-<span style="color: #000000">00009:</span>         <span style="color: #FF0000">{</span>
-<span style="color: #000000">00010:</span>                 <span style="font-weight: bold"><span style="color: #0000FF">while</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
-<span style="color: #000000">00011:</span>                         <span style="font-weight: bold"><span style="color: #000000">ahead</span></span><span style="color: #990000">(</span><span style="color: #993399">100</span><span style="color: #990000">);</span>
-<span style="color: #000000">00012:</span>                         <span style="font-weight: bold"><span style="color: #000000">turnGunRight</span></span><span style="color: #990000">(</span><span style="color: #993399">360</span><span style="color: #990000">);</span>
-<span style="color: #000000">00013:</span>                         <span style="font-weight: bold"><span style="color: #000000">back</span></span><span style="color: #990000">(</span><span style="color: #993399">100</span><span style="color: #990000">);</span>
-<span style="color: #000000">00014:</span>                         <span style="font-weight: bold"><span style="color: #000000">turnGunRight</span></span><span style="color: #990000">(</span><span style="color: #993399">360</span><span style="color: #990000">);</span>
-<span style="color: #000000">00015:</span>                 <span style="color: #FF0000">}</span>
-<span style="color: #000000">00016:</span>         <span style="color: #FF0000">}</span>
-<span style="color: #000000">00017:</span>
-<span style="color: #000000">00018:</span>         <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">onScannedRobot</span></span><span style="color: #990000">(</span><span style="color: #008080">ScannedRobotEvent</span> e<span style="color: #990000">)</span>
-<span style="color: #000000">00019:</span>         <span style="color: #FF0000">{</span>
-<span style="color: #000000">00020:</span>                 <span style="font-weight: bold"><span style="color: #000000">fire</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">);</span>
-<span style="color: #000000">00021:</span>         <span style="color: #FF0000">}</span>
-<span style="color: #000000">00022:</span>
-<span style="color: #000000">00023:</span>
-<span style="color: #000000">00024:</span>         <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">onHitByBullet</span></span><span style="color: #990000">(</span><span style="color: #008080">HitByBulletEvent</span> e<span style="color: #990000">)</span>
-<span style="color: #000000">00025:</span>         <span style="color: #FF0000">{</span>
-<span style="color: #000000">00026:</span>                 <span style="font-weight: bold"><span style="color: #000000">turnLeft</span></span><span style="color: #990000">(</span><span style="color: #993399">90</span> <span style="color: #990000">-</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getBearing</span></span><span style="color: #990000">());</span>
-<span style="color: #000000">00027:</span>         <span style="color: #FF0000">}</span>
-<span style="color: #000000">00028:</span>
-<span style="color: #000000">00029:</span> <span style="color: #FF0000">}</span></tt></pre></div></div>
+<pre><tt><span style="color: #000000">    1:</span> <span style="font-weight: bold"><span style="color: #000080">package</span></span> vsj<span style="color: #990000">;</span>
+<span style="color: #000000">    2:</span> <span style="font-weight: bold"><span style="color: #000080">import</span></span> robocode<span style="color: #990000">.*;</span>
+<span style="color: #000000">    3:</span>
+<span style="color: #000000">    4:</span>
+<span style="color: #000000">    5:</span> <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Robbie</span> <span style="font-weight: bold"><span style="color: #0000FF">extends</span></span> Robot
+<span style="color: #000000">    6:</span> <span style="color: #FF0000">{</span>
+<span style="color: #000000">    7:</span>
+<span style="color: #000000">    8:</span>         <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">run</span></span><span style="color: #990000">()</span>
+<span style="color: #000000">    9:</span>         <span style="color: #FF0000">{</span>
+<span style="color: #000000">   10:</span>                 <span style="font-weight: bold"><span style="color: #0000FF">while</span></span><span style="color: #990000">(</span><span style="font-weight: bold"><span style="color: #0000FF">true</span></span><span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+<span style="color: #000000">   11:</span>                         <span style="font-weight: bold"><span style="color: #000000">ahead</span></span><span style="color: #990000">(</span><span style="color: #993399">100</span><span style="color: #990000">);</span>
+<span style="color: #000000">   12:</span>                         <span style="font-weight: bold"><span style="color: #000000">turnGunRight</span></span><span style="color: #990000">(</span><span style="color: #993399">360</span><span style="color: #990000">);</span>
+<span style="color: #000000">   13:</span>                         <span style="font-weight: bold"><span style="color: #000000">back</span></span><span style="color: #990000">(</span><span style="color: #993399">100</span><span style="color: #990000">);</span>
+<span style="color: #000000">   14:</span>                         <span style="font-weight: bold"><span style="color: #000000">turnGunRight</span></span><span style="color: #990000">(</span><span style="color: #993399">360</span><span style="color: #990000">);</span>
+<span style="color: #000000">   15:</span>                 <span style="color: #FF0000">}</span>
+<span style="color: #000000">   16:</span>         <span style="color: #FF0000">}</span>
+<span style="color: #000000">   17:</span>
+<span style="color: #000000">   18:</span>         <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">onScannedRobot</span></span><span style="color: #990000">(</span><span style="color: #008080">ScannedRobotEvent</span> e<span style="color: #990000">)</span>
+<span style="color: #000000">   19:</span>         <span style="color: #FF0000">{</span>
+<span style="color: #000000">   20:</span>                 <span style="font-weight: bold"><span style="color: #000000">fire</span></span><span style="color: #990000">(</span><span style="color: #993399">1</span><span style="color: #990000">);</span>
+<span style="color: #000000">   21:</span>         <span style="color: #FF0000">}</span>
+<span style="color: #000000">   22:</span>
+<span style="color: #000000">   23:</span>
+<span style="color: #000000">   24:</span>         <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">onHitByBullet</span></span><span style="color: #990000">(</span><span style="color: #008080">HitByBulletEvent</span> e<span style="color: #990000">)</span>
+<span style="color: #000000">   25:</span>         <span style="color: #FF0000">{</span>
+<span style="color: #000000">   26:</span>                 <span style="font-weight: bold"><span style="color: #000000">turnLeft</span></span><span style="color: #990000">(</span><span style="color: #993399">90</span> <span style="color: #990000">-</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getBearing</span></span><span style="color: #990000">());</span>
+<span style="color: #000000">   27:</span>         <span style="color: #FF0000">}</span>
+<span style="color: #000000">   28:</span>
+<span style="color: #000000">   29:</span> <span style="color: #FF0000">}</span></tt></pre></div></div>
 <div class="paragraph"><p>A primeira linha do código acima é necessária para que o nosso código faça parte do pacote que definimos no momento da criação do robô (com as iniciais do nome do autor). Já a segunda linha é quem permite que utilizemos classes e métodos disponíveis na biblioteca robocode em nosso código.</p></div>
 <div class="paragraph"><p>A linha 4 declara a nossa classe <span class="monospaced">Robbie</span>. Quem ainda não conhece o mecanismo de herança da linguagem Java pode estar estranhando aquele ``extends Robot` ali. Estender uma classe significa que a nossa classe será construída como uma extensão de uma outra classe. Isto é, a classe <span class="monospaced">Robbie</span> irá conter tudo que definirmos em nossa classe, além do que já está definido na classe <span class="monospaced">Robot</span>. Objetos da classe <span class="monospaced">Robot</span> são orientados a eventos, isto é, algumas ocorrências disparam eventos no objeto e a tais eventos são vinculados a métodos que serão chamados quando da ocorrência de tais eventos. Por exemplo, quando o robô é atingido por um tiro de um adversário, o método <span class="monospaced">onHitByBullet</span> é chamado. Assim, para definir <strong>o que</strong> o nosso robô fará quando for atingido por um tiro, basta que implementemos o método <span class="monospaced">onHitByBullet</span> na classe que representa o nosso robô.</p></div>
 <div class="paragraph"><p>Veja abaixo os principais métodos que podemos implementar em nosso código e o evento que dispara tal método.</p></div>
@@ -1214,7 +1222,6 @@ http://www.gnu.org/software/src-highlite -->
 style="
 width:100%;
 ">
-<caption class="title">Tabela 4. Métodos e eventos</caption>
 <col style="width:50%;">
 <col style="width:50%;">
 <thead>
@@ -1310,7 +1317,6 @@ Rotacione a arma 360 graus para a direita.
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<img src="./images/icons/note.png" alt="Nota">
 </td>
 <td class="content">
 <div class="title">Herança</div>
@@ -1392,7 +1398,6 @@ http://www.gnu.org/software/src-highlite -->
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<img src="./images/icons/note.png" alt="Nota">
 </td>
 <td class="content">
 <div class="title">Math.abs</div>
@@ -1431,7 +1436,22 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 <div class="sect2">
 <h3 id="_fugindo_do_adversário">9.3. Fugindo do adversário</h3>
-<div class="paragraph"><p>Quando nosso robô recebe um tiro, provavelmente existe um robô cujo canhão está direcionado diretamente para ele. O ideal em uma situação dessas é fugir em um ângulo reto ao robô adversário.</p></div>
+<div class="paragraph"><p>Quando nosso robô recebe um tiro, provavelmente existe um robô cujo canhão está direcionado diretamente para ele. O ideal em uma situação dessas é fugir em um ângulo reto ao robô adversário. Como já vimmos anteriormente, podemos fazer isso no método <span class="monospaced">onHitByBullet</span>:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">onHitByBullet</span></span><span style="color: #990000">(</span><span style="color: #008080">HitByBulletEvent</span> e<span style="color: #990000">)</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #000000">turnLeft</span></span><span style="color: #990000">(</span><span style="color: #993399">90</span> <span style="color: #990000">-</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">getBearing</span></span><span style="color: #990000">());</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>Esse método vai fazer com que o nosso robô gire tantos graus quantos forem necessários à esquerda para que o heading do nosso robô fique a 90° do robô adversário, possibilitando que nosso robô fuja para os lados.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/27.png" alt="images/img/27.png" width="400">
+</div>
+</div>
 <div class="paragraph"><p><script src="analytics.js"></script></p></div>
 </div>
 </div>
@@ -1440,7 +1460,7 @@ http://www.gnu.org/software/src-highlite -->
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2014-03-10 23:14:29 BRT
+template::[footer-text]
 </div>
 </div>
 </body>
