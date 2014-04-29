@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.7">
+<title>Tutorial de Jsoup</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+/*
+ * Theme specific overrides of the preceding (asciidoc.css) CSS.
+ *
+ */
+body {
+  font-family: Garamond, Georgia, serif;
+  font-size: 17px;
+  color: #3E4349;
+  line-height: 1.3em;
+}
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Garmond, Georgia, serif;
+  font-weight: normal;
+  border-bottom-width: 0;
+  color: #3E4349;
+}
+div.title, caption.title { color: #596673; font-weight: bold; }
+h1 { font-size: 240%; }
+h2 { font-size: 180%; }
+h3 { font-size: 150%; }
+h4 { font-size: 130%; }
+h5 { font-size: 115%; }
+h6 { font-size: 100%; }
+#header h1 { margin-top: 0; }
+#toc {
+  color: #444444;
+  line-height: 1.5;
+  padding-top: 1.5em;
+}
+#toctitle {
+  font-size: 20px;
+}
+#toc a {
+    border-bottom: 1px dotted #999999;
+    color: #444444 !important;
+    text-decoration: none !important;
+}
+#toc a:hover {
+    border-bottom: 1px solid #6D4100;
+    color: #6D4100 !important;
+    text-decoration: none !important;
+}
+div.toclevel1 { margin-top: 0.2em; font-size: 16px; }
+div.toclevel2 { margin-top: 0.15em; font-size: 14px; }
+em, dt, td.hdlist1 { color: black; }
+strong { color: #3E4349; }
+a { color: #004B6B; text-decoration: none; border-bottom: 1px dotted #004B6B; }
+a:visited { color: #615FA0; border-bottom: 1px dotted #615FA0; }
+a:hover { color: #6D4100; border-bottom: 1px solid #6D4100; }
+div.tableblock > table, table.tableblock { border: 3px solid #E8E8E8; }
+th.tableblock, td.tableblock { border: 1px solid #E8E8E8; }
+ul > li > * { color: #3E4349; }
+pre, tt, .monospaced { font-family: Consolas,Menlo,'Deja Vu Sans Mono','Bitstream Vera Sans Mono',monospace; }
+tt, .monospaced { font-size: 0.9em; color: black;
+}
+div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock > div.content { border-width: 0 0 0 3px; border-color: #E8E8E8; }
+div.verseblock { border-left-width: 0; margin-left: 3em; }
+div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
+div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(2);
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Tutorial de Jsoup</h1>
+<span id="author">Prof. Valdir Stumm Júnior - &lt;valdir.stumm@blumenau.ifc.edu.br&gt;</span><br>
+<span id="revdate">Instituto Federal Catarinense - Câmpus Blumenau</span>
+<div id="toc">
+  <div id="toctitle">Sumário</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_introdução">1. Introdução</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><a href="http://jsoup.org/">JSoup</a> é uma biblioteca Java para manipulação de conteúdo em formato HTML. Com ela, é possível ler e extrair informações de arquivos HTML com facilidade. Você, jogador(a) de <em>League of Legends</em> (LOL), deve acessar com frequência o fórum do LOL no Brasil, para saber de novidades relacionadas ao jogo. O fórum é uma página assim:</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/1.png" alt="images/img/1.png" width="500">
+</div>
+</div>
+<div class="paragraph"><p>Não seria legal poder obter essas informações sem precisar acessar a página toda vez? Que tal um programinha em Java que liste na tela os 10 tópicos mais recentes do fórum? Ou então, um programinha que nos avise quando aparece um tópico novo no fórum?</p></div>
+<div class="paragraph"><p>Para que isso seja possível, precisaremos aprender a lidar com duas questões fundamentais:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Como baixar um arquivo HTML da web em Java?
+</p>
+</li>
+<li>
+<p>
+Como extrair informações do arquivo HTML baixado?
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>Este tutorial irá cobrir esses dois tópicos, utilizando o Jsoup como biblioteca de suporte. Em um primeiro momento, vamos dar uma revisada rápida sobre HTML. Depois, vamos ver como utilizar o Jsoup para extrair informações de arquivos HTML.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_html">2. HTML</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Bla bla bla&#8230;</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsoup">3. Jsoup</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Agora que já sabemos o que é um arquivo HTML e como ele é composto, podemos começar a brincar de extrair informações utilizando a biblioteca Jsoup em nossos programas Java. Antes de mais nada, é preciso "instalar" o Jsoup.</p></div>
+<div class="sect2">
+<h3 id="_instalação">3.1. Instalação</h3>
+<div class="paragraph"><p>Vá até a página de downloads do Jsoup e baixe o arquivo <span class="monospaced">jsoup-x-y-z.jar</span> que estiver listado na página. Observe que <span class="monospaced">x</span>, <span class="monospaced">y</span> e <span class="monospaced">z</span> são números relativos à versão atual do Jsoup, que no momento da escrita deste tutorial era <span class="monospaced">1.7.3</span>.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Nota">
+</td>
+<td class="content">
+<div class="title">Arquivos .jar</div>
+<div class="paragraph"><p>Arquivos .jar são utilizados para agrupar várias classes Java em um único arquivo. Eles são amplamente utilizados para distribuição de bibliotecas de código Java que não estão inclusas na biblioteca-padrão.</p></div>
+</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Para que possamos utilizar a biblioteca recém baixada nossos programas, precisaremos adicionar tal biblioteca ao editor no qual estivermos desenvolvendo, para que ele saiba onde procurar as classes quando formos utilizá-las.</p></div>
+<div class="sect3">
+<h4 id="_drjava">3.1.1. DrJava</h4>
+<div class="paragraph"><p>Para adicionar o Jsoup ao DrJava, vá em <em>Edit</em> &#8594; <em>Preferences</em>. Na janela de preferências, no item <em>Resource Locations</em> há um elemento chamado <em>Extra classpath</em>. Clique no botão <em>Add</em> logo abaixo dele, vá até a pasta onde o .jar do Jsoup foi gravado e selecione tal arquivo. Feito isso, clique no botão OK na janela de preferências. A imagem abaixo mostra um pedaço do processo.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/2.png" alt="images/img/2.png" width="500">
+</div>
+</div>
+<div class="paragraph"><p>Agora o DrJava será capaz de compilar e executar código que utiliza o Jsoup.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_netbeans">3.1.2. NetBeans</h4>
+<div class="paragraph"><p><strong>TODO.</strong></p></div>
+</div>
+<div class="sect3">
+<h4 id="_testando_a_instalação">3.1.3. Testando a instalação</h4>
+<div class="paragraph"><p>Para termos certeza de que a instalação está correta, vamos compilar e executar um programa de teste.</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">import</span></span> java<span style="color: #990000">.</span>io<span style="color: #990000">.</span>IOException<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>Jsoup<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Document<span style="color: #990000">;</span>
+
+
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">Exemplo1</span>
+<span style="color: #FF0000">{</span>
+    <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">(</span>String<span style="color: #990000">[]</span> args<span style="color: #990000">)</span>
+    <span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">try</span></span> <span style="color: #FF0000">{</span>
+            <span style="color: #008080">Document</span> doc <span style="color: #990000">=</span> Jsoup<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"http://google.com"</span><span style="color: #990000">).</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
+            <span style="color: #008080">String</span> title <span style="color: #990000">=</span> doc<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">title</span></span><span style="color: #990000">();</span>
+            System<span style="color: #990000">.</span>out<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">println</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"Título : "</span> <span style="color: #990000">+</span> title<span style="color: #990000">);</span>
+        <span style="color: #FF0000">}</span> <span style="font-weight: bold"><span style="color: #0000FF">catch</span></span> <span style="color: #990000">(</span><span style="color: #008080">IOException</span> e<span style="color: #990000">)</span> <span style="color: #FF0000">{</span>
+            e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">printStackTrace</span></span><span style="color: #990000">();</span>
+        <span style="color: #FF0000">}</span>
+    <span style="color: #FF0000">}</span>
+
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>Salve o código acima em um arquivo chamado <span class="monospaced">Exemplo1.java</span>, compile-o e execute-o. O programa deverá mostrar como resultado o texto: "Título : Google". A imagem abaixo mostra a execução do programa no DrJava.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/3.png" alt="images/img/3.png" width="500">
+</div>
+</div>
+<div class="paragraph"><p>Agora que o Jsoup está instalado, vamos começar a brincadeira!</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conhecendo_o_jsoup">3.2. Conhecendo o Jsoup</h3>
+<div class="paragraph"><p>Antes de escrevermos nossos programas para "hackear" os nossos sites preferidos, precisaremos aprender um pouco mais sobre a estrutura do Jsoup. Com o Jsoup, podemos obter o conteúdo de páginas web e também fazer o <em>parsing</em> do documento HTML retornado.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Nota">
+</td>
+<td class="content">
+<div class="title">O que é parsing?</div>
+<div class="paragraph"><p>Fazer o <em>parsing</em> de um documento significa analisá-lo de forma que seja possível extrair informações sintáticas do mesmo. Por exemplo, após fazer o <em>parsing</em> de um documento HTML, podemos facilmente obter o conteúdo da tag <span class="monospaced">body</span> do documento, pois o <em>parsing</em> já analisado e separados os componentes do arquivo.</p></div>
+<div class="paragraph"><p><em>Parsear</em> um documento HTML é uma tarefa bem complicadinha, pois além de existirem muitas variações possíveis sobre a organização do documento, também existem muitos documentos HTML com estruturas inválidas por aí. Os navegadores web acabam renderizando esses documentos sem problemas, mas fazer uma análise sintática do conteúdo não é tão simples assim. Por isso que, ao invés de criarmos nossos próprios mecanismos de análise usando os métodos da classe String, vamos utilizar a biblioteca Jsoup, que faz todo o trabalho "sujo" pra gente.</p></div>
+</td>
+</tr></table>
+</div>
+<div class="sect3">
+<h4 id="_baixando_uma_página_com_o_jsoup">3.2.1. Baixando uma página com o Jsoup</h4>
+<div class="paragraph"><p>Para escrever um programinha que "hackeia" o conteúdo do fórum do LOL, a primeira coisa que temos que aprender é como baixar uma página web utilizando o Jsoup. Para fazer isso, vamos utilizar o método estático <a href="http://jsoup.org/apidocs/org/jsoup/Jsoup.html#connect(java.lang.String)"><span class="monospaced">Jsoup.connect()</span></a>. Esse método é definido da seguinte forma:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>public static Connection connect(String url)</pre>
+</div></div>
+<div class="paragraph"><p>Isto é, recebe como parâmetro uma URL (<em>Uniform Resource Location</em>) e retorna como resultado um objeto do tipo <a href="http://jsoup.org/apidocs/org/jsoup/helper/HttpConnection.html"><span class="monospaced">HttpConnection</span></a>. Um dos métodos disponíveis em objetos <span class="monospaced">HttpConnection</span> é o método <a href="http://jsoup.org/apidocs/org/jsoup/Connection.html#get()"><span class="monospaced">get()</span></a>. Esse método realiza as duas operações que precisamos para fazer a análise de uma página web: ele faz o download do conteúdo HTML da URL solicitada e já realiza o <em>parsing</em> do HTML, retornando um objeto do tipo <a href="http://jsoup.org/apidocs/org/jsoup/nodes/Document.html"><span class="monospaced">Document</span></a>. Um objeto <span class="monospaced">Document</span> armazena internamente um documento HTML já analisado, isto é, com suas fatias devidamente separadas. Mais para frente veremos mais detalhes sobre objetos desse tipo.</p></div>
+<div class="paragraph"><p>O código para fazer o download e analisar o conteúdo de uma URL é bem simples:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>Jsoup<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Document<span style="color: #990000">;</span>
+
+<span style="color: #990000">...</span>
+        <span style="color: #008080">String</span> url <span style="color: #990000">=</span> <span style="color: #FF0000">"http://forums.br.leagueoflegends.com/board/forumdisplay.php?f=13"</span><span style="color: #990000">;</span>
+        <span style="color: #008080">Document</span> doc <span style="color: #990000">=</span> Jsoup<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span>url<span style="color: #990000">).</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
+<span style="color: #990000">...</span></tt></pre></div></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Nota">
+</td>
+<td class="content">
+<div class="title">O que significa "hackear" algo?</div>
+<div class="paragraph"><p>Diferentemente do que a cultura popular prega, hackear não significa roubar, invadir ou prejudicar algo ou alguém. Hackear algo significa elaborar uma solução criativa envolvendo conhecimentos especializados para um problema qualquer. Assim, quando dizemos que vamos hackear o fórum do LOL, o que queremos dizer é que vamos obter as informações lá apresentadas, sem precisar acessar o site através de um navegador. Ou seja, estamos criando um mecanismo para facilitar a nossa vida, com base em conhecimentos específicos que temos (Java e Jsoup).</p></div>
+</td>
+</tr></table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_obtendo_elementos_da_página">3.2.2. Obtendo elementos da página</h4>
+<div class="paragraph"><p>Um elemento de uma página web é qualquer coisa delimitada por tags dentro da página. Por exemplo, um link é um elemento delimitado pela tag <strong>a</strong> (<span class="monospaced">&lt;a href="..."&gt;...&lt;/a&gt;</span>). Uma imagem é um elemento delimitado pela tag <strong>img</strong> (<span class="monospaced">&lt;img src="..."&gt;...&lt;/img&gt;</span>). O corpo do documento HTML é um elemento, delimitado pela tag <strong>body</strong>, e assim por diante. Elementos estruturais do HTML, como <strong>head</strong>, <strong>title</strong> e <strong>body</strong> podem ser obtidos por chamadas aos métodos <span class="monospaced">head()</span>, <span class="monospaced">title()</span> e <span class="monospaced">body()</span>, respectivamente. Por exemplo, se chamarmos o método <span class="monospaced">title()</span> sobre o <span class="monospaced">Document</span> retornado pelo método <span class="monospaced">get()</span>, vamos obter o título da página baixada. Veja:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>Jsoup<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Document<span style="color: #990000">;</span>
+
+<span style="color: #990000">...</span>
+        <span style="color: #008080">String</span> url <span style="color: #990000">=</span> <span style="color: #FF0000">"http://forums.br.leagueoflegends.com/board/forumdisplay.php?f=13"</span><span style="color: #990000">;</span>
+        <span style="color: #008080">Document</span> doc <span style="color: #990000">=</span> Jsoup<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span>url<span style="color: #990000">).</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
+        System<span style="color: #990000">.</span>out<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">println</span></span><span style="color: #990000">(</span>doc<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">title</span></span><span style="color: #990000">());</span>
+<span style="color: #990000">...</span></tt></pre></div></div>
+<div class="paragraph"><p>Se executarmos o código acima, teremos como saída:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>Comunidade League of Legends</pre>
+</div></div>
+<div class="paragraph"><p>Legal, não? Agora tente imprimir o conteúdo da tag <strong>body</strong> do fórum do LOL.</p></div>
+<div class="paragraph"><p>Além dos elementos estruturais mais comuns, também podemos acessar os demais elementos da página. Usaremos o método <span class="monospaced">select()</span> do objeto <span class="monospaced">Document</span> retornado pelo <span class="monospaced">get()</span> para obter elementos individuais da página baixada, como por exemplo um link, uma imagem, uma célula de uma tabela, etc.</p></div>
+<div class="paragraph"><p>Por exemplo, para obter todas as imagens que aparecem na listagem de tópicos no fórum do LOL, podemos fazer o seguinte:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>Jsoup<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Element<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Document<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Elements<span style="color: #990000">;</span>
+
+<span style="color: #990000">...</span>
+        <span style="color: #008080">String</span> url <span style="color: #990000">=</span> <span style="color: #FF0000">"http://forums.br.leagueoflegends.com/board/forumdisplay.php?f=13"</span><span style="color: #990000">;</span>
+        <span style="color: #008080">Document</span> doc <span style="color: #990000">=</span> Jsoup<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span>url<span style="color: #990000">).</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
+        <span style="color: #008080">Elements</span> elements <span style="color: #990000">=</span> doc<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">select</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"img"</span><span style="color: #990000">);</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">for</span></span><span style="color: #990000">(</span><span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span> i <span style="color: #990000">&lt;</span> elements<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">size</span></span><span style="color: #990000">();</span> i<span style="color: #990000">++)</span> <span style="color: #FF0000">{</span>
+                System<span style="color: #990000">.</span>out<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">println</span></span><span style="color: #990000">(</span> elements<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">(</span>i<span style="color: #990000">)</span> <span style="color: #990000">);</span>
+        <span style="color: #FF0000">}</span>
+<span style="color: #990000">...</span></tt></pre></div></div>
+<div class="paragraph"><p>O método <a href="http://jsoup.org/apidocs/org/jsoup/select/Elements.html#select(java.lang.String)"><span class="monospaced">select()</span></a> retorna um objeto do tipo <a href="http://jsoup.org/apidocs/org/jsoup/select/Elements.html"><span class="monospaced">Elements</span></a>, que é um conjunto de objetos <span class="monospaced">Element</span>, cada um representando um dos elementos retornados. No caso da nossa consulta, todos os elementos serão relativos à tags <strong>img</strong>.</p></div>
+<div class="paragraph"><p>A saída do programa acima será parecida com:</p></div>
+<div class="literalblock command">
+<div class="content monospaced">
+<pre>&lt;img src="lol_theme/img/staff_post_icon.gif" alt="Riot Post" /&gt;
+&lt;img src="lol_theme/img/staff_post_icon.gif" alt="Riot Post" /&gt;
+&lt;img src="lol_theme/img/staff_post_icon.gif" alt="Riot Post" /&gt;
+&lt;img src="lol_theme/img/staff_post_icon.gif" alt="Riot Post" /&gt;
+&lt;img src="lol_theme/img/staff_post_icon.gif" alt="Riot Post" /&gt;
+&lt;img src="lol_theme/img/staff_post_icon.gif" alt="Riot Post" /&gt;
+...</pre>
+</div></div>
+<div class="paragraph"><p>Se quisermos obter todos os links de uma determinada página, vamos utilizar o <span class="monospaced">select</span>, mas dessa vez passando uma informação adicional. Um link em HTML é composto por uma tag <strong>a</strong> contendo um atributo <strong>href</strong> com o valor da URL. Veja um exemplo de um link:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>&lt;a href="http://www.google.com.br"&gt; texto do link &lt;/a&gt;</pre>
+</div></div>
+<div class="paragraph"><p>Assim, para obter todas as tags <strong>a</strong> que contenham um atributo <strong>href</strong>, vamos passar ao <span class="monospaced">select</span> o nome da tag com o nome do atributo entre colchetes:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>Elements elements = doc.select("a[href]");</pre>
+</div></div>
+<div class="paragraph"><p>Muitas vezes, o desenvolvedor da página utiliza classes CSS para classificar os elementos da sua página. Quem desenvolveu o fórum do LOL, <strong>marcou</strong> todos os títulos das páginas com a classe CSS <span class="monospaced">thread-title-link</span>. Veja na imagem abaixo:</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/4.png" alt="images/img/4.png" width="500">
+</div>
+</div>
+<div class="paragraph"><p>Para obter os elementos de uma <strong>tag</strong> marcada com uma classe CSS, podemos continuar usando o método <span class="monospaced">select()</span>, mas agora passando o nome da <strong>tag</strong> e o nome da classe CSS em questão, unidos por um ponto:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>        <span style="color: #008080">Elements</span> e <span style="color: #990000">=</span> doc<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">select</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"a.thread-title-link"</span><span style="color: #990000">)</span></tt></pre></div></div>
+</div>
+<div class="sect3">
+<h4 id="_obtendo_os_títulos_do_fórum_do_lol">3.2.3. Obtendo os títulos do Fórum do LOL</h4>
+<div class="paragraph"><p>Assim sendo, é fácil obter todos os títulos de posts do fórum do LOL. Veja:</p></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>Jsoup<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Element<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Document<span style="color: #990000">;</span>
+<span style="font-weight: bold"><span style="color: #000080">import</span></span> org<span style="color: #990000">.</span>jsoup<span style="color: #990000">.</span>nodes<span style="color: #990000">.</span>Elements<span style="color: #990000">;</span>
+
+<span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">class</span></span> <span style="color: #008080">ListadorDeTopicosLOL</span>
+<span style="color: #FF0000">{</span>
+        <span style="font-weight: bold"><span style="color: #0000FF">public</span></span> <span style="font-weight: bold"><span style="color: #0000FF">static</span></span> <span style="color: #009900">void</span> <span style="font-weight: bold"><span style="color: #000000">main</span></span><span style="color: #990000">(</span>String<span style="color: #990000">[]</span> args<span style="color: #990000">)</span>
+        <span style="color: #FF0000">{</span>
+                <span style="color: #008080">String</span> url <span style="color: #990000">=</span> <span style="color: #FF0000">"http://forums.br.leagueoflegends.com/board/forumdisplay.php?f=13"</span><span style="color: #990000">;</span>
+                <span style="color: #008080">Document</span> doc <span style="color: #990000">=</span> Jsoup<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">connect</span></span><span style="color: #990000">(</span>url<span style="color: #990000">).</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">();</span>
+                <span style="color: #008080">Elements</span> e <span style="color: #990000">=</span> doc<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">select</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"a.thread-title-link"</span><span style="color: #990000">)</span>
+                <span style="font-weight: bold"><span style="color: #0000FF">for</span></span> <span style="color: #990000">(</span><span style="color: #009900">int</span> i <span style="color: #990000">=</span> <span style="color: #993399">0</span><span style="color: #990000">;</span> i <span style="color: #990000">&lt;</span> e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">size</span></span><span style="color: #990000">();</span> i<span style="color: #990000">++)</span> <span style="color: #FF0000">{</span>
+                      System<span style="color: #990000">.</span>out<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">println</span></span><span style="color: #990000">(</span>e<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">get</span></span><span style="color: #990000">(</span>i<span style="color: #990000">).</span><span style="font-weight: bold"><span style="color: #000000">text</span></span><span style="color: #990000">());</span>
+                <span style="color: #FF0000">}</span>
+        <span style="color: #FF0000">}</span>
+<span style="color: #FF0000">}</span></tt></pre></div></div>
+<div class="paragraph"><p>Executando o código acima, obteremos os seguintes resultados:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>Pré-Temporada: discurso aos Invocadores
+As transferências para o Brasil estão abertas
+RP Bônus Extra por tempo limitado
+Indique um Amigo
+Promoção: Compre duas páginas de runas pelo preço de uma
+Começa a batalha por Freljord
+Riot Contrata!!
+Como resgatar sua skin Tristana Garota Riot
+Nidalee Caçadora de Cabeças está disponível
+Procura-se: Contador
+Campeão em Destaque: o relançamento de Katarina
+Recompensa da página brasileira no Facebook
+Notas de Atualização da Ilha das Sombras
+Rotação de Campeões Grátis: semana 9
+Lissandra e skins de Freljord disponíveis
+Rotação de Campeões Grátis: semana 10
+Revelamos Zac, a Arma Secreta
+...</pre>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Última atualização 2014-04-28 21:25:57 BRT
+</div>
+</div>
+</body>
+</html>
