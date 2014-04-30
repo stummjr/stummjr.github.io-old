@@ -954,7 +954,7 @@ http://www.gnu.org/software/src-highlite -->
 </td>
 <td class="content">
 <div class="title">O que é parsing?</div>
-<div class="paragraph"><p>Fazer o <em>parsing</em> de um documento significa analisá-lo de forma que seja possível extrair informações sintáticas do mesmo. Por exemplo, após fazer o <em>parsing</em> de um documento HTML, podemos facilmente obter o conteúdo da tag <span class="monospaced">body</span> do documento, pois o <em>parsing</em> já analisado e separados os componentes do arquivo.</p></div>
+<div class="paragraph"><p>Fazer o <em>parsing</em> de um documento significa analisá-lo de forma que seja possível extrair informações sintáticas do mesmo. Por exemplo, após fazer o <em>parsing</em> de um documento HTML, podemos facilmente obter o conteúdo da tag <span class="monospaced">body</span> do documento, pois o <em>parsing</em> já analisou e separou os componentes do arquivo.</p></div>
 <div class="paragraph"><p><em>Parsear</em> um documento HTML é uma tarefa bem complicadinha, pois além de existirem muitas variações possíveis sobre a organização do documento, também existem muitos documentos HTML com estruturas inválidas por aí. Os navegadores web acabam renderizando esses documentos sem problemas, mas fazer uma análise sintática do conteúdo não é tão simples assim. Por isso que, ao invés de criarmos nossos próprios mecanismos de análise usando os métodos da classe String, vamos utilizar a biblioteca Jsoup, que faz todo o trabalho "sujo" pra gente.</p></div>
 </td>
 </tr></table>
@@ -1014,6 +1014,8 @@ http://www.gnu.org/software/src-highlite -->
 <pre>Comunidade League of Legends</pre>
 </div></div>
 <div class="paragraph"><p>Legal, não? Agora tente imprimir o conteúdo da tag <strong>body</strong> do fórum do LOL.</p></div>
+<div class="sect4">
+<h5 id="_acessando_elementos_específicos">Acessando elementos específicos</h5>
 <div class="paragraph"><p>Além dos elementos estruturais mais comuns, também podemos acessar os demais elementos da página. Usaremos o método <span class="monospaced">select()</span> do objeto <span class="monospaced">Document</span> retornado pelo <span class="monospaced">get()</span> para obter elementos individuais da página baixada, como por exemplo um link, uma imagem, uma célula de uma tabela, etc.</p></div>
 <div class="paragraph"><p>Por exemplo, para obter todas as imagens que aparecem na listagem de tópicos no fórum do LOL, podemos fazer o seguinte:</p></div>
 <div class="listingblock">
@@ -1046,20 +1048,27 @@ http://www.gnu.org/software/src-highlite -->
 &lt;img src="lol_theme/img/staff_post_icon.gif" alt="Riot Post" /&gt;
 ...</pre>
 </div></div>
-<div class="paragraph"><p>Se quisermos obter todos os links de uma determinada página, vamos utilizar o <span class="monospaced">select</span>, mas dessa vez passando uma informação adicional. Um link em HTML é composto por uma tag <strong>a</strong> contendo um atributo <strong>href</strong> com o valor da URL. Veja um exemplo de um link:</p></div>
+</div>
+<div class="sect4">
+<h5 id="_filtrando_elementos_por_atributos_da_tag">Filtrando elementos por atributos da tag</h5>
+<div class="paragraph"><p>Se quisermos obter todos os links de uma determinada página, vamos utilizar o método <span class="monospaced">select()</span> novamente, mas dessa vez passando uma informação adicional. Um link em HTML é composto por uma tag <strong>a</strong> contendo um atributo <strong>href</strong> com o valor da URL. Veja um exemplo de um link:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>&lt;a href="http://www.google.com.br"&gt; texto do link &lt;/a&gt;</pre>
 </div></div>
-<div class="paragraph"><p>Assim, para obter todas as tags <strong>a</strong> que contenham um atributo <strong>href</strong>, vamos passar ao <span class="monospaced">select</span> o nome da tag com o nome do atributo entre colchetes:</p></div>
+<div class="paragraph"><p>Assim, para obter todas as tags <strong>a</strong> que contenham um atributo <strong>href</strong>, podemos passar ao <span class="monospaced">select()</span> <strong>o nome da tag com o nome do atributo entre colchetes</strong>:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>Elements elements = doc.select("a[href]");</pre>
 </div></div>
-<div class="paragraph"><p>Muitas vezes, o desenvolvedor da página utiliza classes CSS para classificar os elementos da sua página. Quem desenvolveu o fórum do LOL, <strong>marcou</strong> todos os títulos das páginas com a classe CSS <span class="monospaced">thread-title-link</span>. Veja na imagem abaixo:</p></div>
+<div class="paragraph"><p>Portanto, para obter os elementos do HTML que possuem determinado atributo, basta passar <span class="monospaced">nome da tag[nome do atributo]</span> ao método <span class="monospaced">select()</span>.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_filtrando_elementos_pela_classe_css">Filtrando elementos pela classe CSS</h5>
+<div class="paragraph"><p>Muitas vezes, o desenvolvedor da página utiliza classes CSS para classificar os elementos do seu layout. Quem desenvolveu o fórum do LOL, <strong>marcou</strong> todos os títulos das páginas com a classe CSS <span class="monospaced">thread-title-link</span>. Ou seja, dentro do HTML da página, todos os elementos que representam títulos de posts no fórum são tags <strong>a</strong> contendo <span class="monospaced">"thread-title-link"</span> como valor do atributo <span class="monospaced">class</span>. Veja na imagem abaixo:</p></div>
 <div class="imageblock">
 <div class="content">
-<img src="images/img/4.png" alt="images/img/4.png" width="500">
+<img src="images/img/4.png" alt="images/img/4.png" width="700">
 </div>
 </div>
 <div class="paragraph"><p>Para obter os elementos de uma <strong>tag</strong> marcada com uma classe CSS, podemos continuar usando o método <span class="monospaced">select()</span>, mas agora passando o nome da <strong>tag</strong> e o nome da classe CSS em questão, unidos por um ponto:</p></div>
@@ -1069,6 +1078,15 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><tt>        <span style="color: #008080">Elements</span> e <span style="color: #990000">=</span> doc<span style="color: #990000">.</span><span style="font-weight: bold"><span style="color: #000000">select</span></span><span style="color: #990000">(</span><span style="color: #FF0000">"a.thread-title-link"</span><span style="color: #990000">)</span></tt></pre></div></div>
+<div class="paragraph"><p>Portanto, para obter os elementos que foram declarados com determinada classe CSS, podemos passar o nome da classe logo após o ponto. Por exemplo: <span class="monospaced">div.codigo</span>, que representa todas os elementos do tipo <span class="monospaced">div</span>, que possuam <span class="monospaced">codigo</span> como classe, como o <span class="monospaced">div</span> apresentado abaixo:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>&lt;div class="codigo"&gt;
+        algum conteúdo qualquer
+        aqui
+&lt;/div&gt;</pre>
+</div></div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_obtendo_os_títulos_do_fórum_do_lol">3.2.3. Obtendo os títulos do Fórum do LOL</h4>
@@ -1125,7 +1143,7 @@ Revelamos Zac, a Arma Secreta
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2014-04-28 21:25:57 BRT
+Última atualização 2014-04-29 23:25:25 BRT
 </div>
 </div>
 </body>
