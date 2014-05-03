@@ -138,28 +138,28 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ol type="none" class="sectlevel1">
-<li><a href="#_introdu_o">1. Introdução</a></li>
-<li><a href="#_html">2. HTML</a></li>
+<li><a href="#_introdu_o">Introdução</a></li>
+<li><a href="#_html">HTML</a></li>
 <li>
 <ol type="none" class="sectlevel2">
 <li><a href="#_atributos_em_elementos_html">Atributos em elementos HTML</a></li>
 <li><a href="#_mais_sobre_html">Mais sobre HTML</a></li>
 </ol>
 </li>
-<li><a href="#_jsoup">3. Jsoup</a></li>
+<li><a href="#_jsoup">Jsoup</a></li>
 <li>
 <ol type="none" class="sectlevel2">
 <li><a href="#_instala_o">Instalação</a></li>
 <li><a href="#_conhecendo_o_jsoup">Conhecendo o Jsoup</a></li>
 </ol>
 </li>
-<li><a href="#_desafio">4. Desafio</a></li>
+<li><a href="#_desafio">Desafio</a></li>
 </ol>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introdu_o">1. Introdução</h2>
+<h2 id="_introdu_o">Introdução</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="http://jsoup.org/">JSoup</a> é uma biblioteca Java para manipulação de conteúdo em formato HTML. Com ela, é possível ler e extrair informações de arquivos HTML com facilidade. Você, jogador(a) de <em>League of Legends</em> (LOL), deve acessar com frequência o fórum do LOL no Brasil, para saber de novidades relacionadas ao jogo. O fórum é uma página assim:</p>
@@ -194,7 +194,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </div>
 </div>
 <div class="sect1">
-<h2 id="_html">2. HTML</h2>
+<h2 id="_html">HTML</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="http://pt.wikipedia.org/wiki/HTML">HTML (<em>HyperText Markup Language</em>)</a> é a linguagem utilizada para definição de páginas na web. O HTML é utilizado basicamente para definir a apresentação de páginas na web. Em geral, as páginas web possuem uma estrutura básica semelhante:</p>
@@ -281,7 +281,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <p>Esse documento HTML pode então renderizado por um navegador.</p>
 </div>
 <div class="sect2">
-<h3 id="_atributos_em_elementos_html">2.1. Atributos em elementos HTML</h3>
+<h3 id="_atributos_em_elementos_html">Atributos em elementos HTML</h3>
 <div class="paragraph">
 <p>Um elemento HTML pode possuir atributos, através dos quais são passadas informações adicionais a esse elemento. Por exemplo, um link em uma página web nada mais é do que um elemento do tipo <code>a</code>, com um atributo <code>href</code> contendo o endereço para o qual o link deverá remeter. Veja um exemplo:</p>
 </div>
@@ -306,7 +306,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 </div>
 <div class="sect2">
-<h3 id="_mais_sobre_html">2.2. Mais sobre HTML</h3>
+<h3 id="_mais_sobre_html">Mais sobre HTML</h3>
 <div class="paragraph">
 <p>Para saber mais sobre HTML, leia um dos tutoriais abaixo:</p>
 </div>
@@ -327,13 +327,13 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </div>
 </div>
 <div class="sect1">
-<h2 id="_jsoup">3. Jsoup</h2>
+<h2 id="_jsoup">Jsoup</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Agora que já sabemos o que é um arquivo HTML e como ele é composto, podemos começar a brincar de extrair informações utilizando a biblioteca Jsoup em nossos programas Java. Antes de mais nada, é preciso "instalar" o Jsoup.</p>
 </div>
 <div class="sect2">
-<h3 id="_instala_o">3.1. Instalação</h3>
+<h3 id="_instala_o">Instalação</h3>
 <div class="paragraph">
 <p>Vá até a página de downloads do Jsoup e baixe o arquivo <code>jsoup-x-y-z.jar</code> que estiver listado na página. Observe que <code>x</code>, <code>y</code> e <code>z</code> são números relativos à versão atual do Jsoup, que no momento da escrita deste tutorial era <code>1.7.3</code>.</p>
 </div>
@@ -357,7 +357,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <p>Para que possamos utilizar a biblioteca recém baixada nossos programas, precisaremos adicionar tal biblioteca ao editor no qual estivermos desenvolvendo, para que ele saiba onde procurar as classes quando formos utilizá-las.</p>
 </div>
 <div class="sect3">
-<h4 id="_drjava">3.1.1. DrJava</h4>
+<h4 id="_drjava">DrJava</h4>
 <div class="paragraph">
 <p>Para adicionar o Jsoup ao DrJava, vá em <em>Edit</em> &#8594; <em>Preferences</em>. Na janela de preferências, no item <em>Resource Locations</em> há um elemento chamado <em>Extra classpath</em>. Clique no botão <em>Add</em> logo abaixo dele, vá até a pasta onde o .jar do Jsoup foi gravado e selecione tal arquivo. Feito isso, clique no botão OK na janela de preferências. A imagem abaixo mostra um pedaço do processo.</p>
 </div>
@@ -373,7 +373,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 </div>
 <div class="sect3">
-<h4 id="_netbeans">3.1.2. NetBeans</h4>
+<h4 id="_netbeans">NetBeans</h4>
 <div class="paragraph">
 <p>No NetBeans, você deverá adicionar o .jar ao projeto no qual quiser utilizar o Jsoup. Com o projeto aberto, clique com o botão direito sobre o nome do projeto e escolha a opção "Propriedades", como mostra a imagem abaixo:</p>
 </div>
@@ -398,7 +398,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 </div>
 <div class="sect3">
-<h4 id="_testando_a_instala_o">3.1.3. Testando a instalação</h4>
+<h4 id="_testando_a_instala_o">Testando a instalação</h4>
 <div class="paragraph">
 <p>Para termos certeza de que a instalação está correta, vamos compilar e executar um programa de teste.</p>
 </div>
@@ -443,7 +443,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 </div>
 <div class="sect2">
-<h3 id="_conhecendo_o_jsoup">3.2. Conhecendo o Jsoup</h3>
+<h3 id="_conhecendo_o_jsoup">Conhecendo o Jsoup</h3>
 <div class="paragraph">
 <p>Antes de escrevermos nossos programas para "hackear" os nossos sites preferidos, precisaremos aprender um pouco mais sobre a estrutura do Jsoup. Com o Jsoup, podemos obter o conteúdo de páginas web e também fazer o <em>parsing</em> do documento HTML retornado.</p>
 </div>
@@ -467,7 +467,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </table>
 </div>
 <div class="sect3">
-<h4 id="_baixando_uma_p_gina_com_o_jsoup">3.2.1. Baixando uma página com o Jsoup</h4>
+<h4 id="_baixando_uma_p_gina_com_o_jsoup">Baixando uma página com o Jsoup</h4>
 <div class="paragraph">
 <p>Para escrever um programinha que "hackeia" o conteúdo do fórum do LOL, a primeira coisa que temos que aprender é como baixar uma página web utilizando o Jsoup. Para fazer isso, vamos utilizar o método estático <a href="http://jsoup.org/apidocs/org/jsoup/Jsoup.html#connect(java.lang.String)"><code>Jsoup.connect()</code></a>. Esse método é definido da seguinte forma:</p>
 </div>
@@ -514,7 +514,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 </div>
 <div class="sect3">
-<h4 id="_obtendo_elementos_da_p_gina">3.2.2. Obtendo elementos da página</h4>
+<h4 id="_obtendo_elementos_da_p_gina">Obtendo elementos da página</h4>
 <div class="paragraph">
 <p>Um elemento de uma página web é qualquer coisa delimitada por tags dentro da página. Por exemplo, um link é um elemento delimitado pela tag <strong>a</strong> (<code>&lt;a href="..."&gt;...&lt;/a&gt;</code>). Uma imagem é um elemento delimitado pela tag <strong>img</strong> (<code>&lt;img src="..."&gt;...&lt;/img&gt;</code>). O corpo do documento HTML é um elemento, delimitado pela tag <strong>body</strong>, e assim por diante. Elementos estruturais do HTML, como <strong>head</strong>, <strong>title</strong> e <strong>body</strong> podem ser obtidos por chamadas aos métodos <code>head()</code>, <code>title()</code> e <code>body()</code>, respectivamente. Por exemplo, se chamarmos o método <code>title()</code> sobre o <code>Document</code> retornado pelo método <code>get()</code>, vamos obter o título da página baixada. Veja:</p>
 </div>
@@ -651,7 +651,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 </div>
 <div class="sect3">
-<h4 id="_obtendo_os_t_tulos_do_f_rum_do_lol">3.2.3. Obtendo os títulos do Fórum do LOL</h4>
+<h4 id="_obtendo_os_t_tulos_do_f_rum_do_lol">Obtendo os títulos do Fórum do LOL</h4>
 <div class="paragraph">
 <p>Você já deve ter percebido que, para cada informação que quisermos extrair de uma página, precisaremos antes analisar o HTML da página para definir como extrair tal informação da página.
 O que queremos extrair da página principal do fórum do LOL são os títulos dos tópicos listados nela. Analisando o HTML dessa página, vimos que cada título de tópico está envolto de uma tag <strong>a</strong> parecida com:</p>
@@ -757,7 +757,7 @@ Revelamos Zac, a Arma Secreta
 </div>
 </div>
 <div class="sect1">
-<h2 id="_desafio">4. Desafio</h2>
+<h2 id="_desafio">Desafio</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Sabendo como obter e filtrar o conteúdo de uma página web, escreva um programa que monitore o fórum do LOL e emita um aviso sonoro quando houver uma nova postagem.</p>
@@ -769,7 +769,7 @@ Revelamos Zac, a Arma Secreta
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-05-03 13:04:19 BRT
+Last updated 2014-05-03 15:44:10 BRT
 </div>
 </div>
 </body>
