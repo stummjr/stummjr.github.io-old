@@ -161,7 +161,7 @@ img { -ms-interpolation-mode: bicubic; }
 
 .antialiased, body { -webkit-font-smoothing: antialiased; }
 
-img { display: inline-block; vertical-align: middle; }
+img { display: inline-block; vertical-align: middle; middle; display: block; margin-left: auto; margin-right: auto;}
 
 textarea { height: auto; min-height: 50px; }
 
@@ -671,3 +671,7 @@ body { background: url('../images/golo/body-bg.png?1399126154') #fdfaf7 repeat; 
 table.tableblock.grid-all { -webkit-border-radius: 0; border-radius: 0; }
 
 #footer { background-color: #23160c; }
+
+#toc ul, #toc ol {
+  list-style-type: none;
+}

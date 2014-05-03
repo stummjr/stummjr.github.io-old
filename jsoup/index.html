@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="Asciidoctor 0.1.3">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutorial de Jsoup</title>
+<title>Raspando a web com Jsoup</title>
 <link rel="stylesheet" href="./stylesheets/golo.css">
 <style>
 .CodeRay {
@@ -132,9 +132,8 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </head>
 <body class="article toc2">
 <div id="header">
-<h1>Tutorial de Jsoup</h1>
+<h1>Raspando a web com Jsoup</h1>
 <span id="author">Prof. Valdir Stumm Júnior - &lt;valdir.stumm@blumenau.ifc.edu.br&gt;</span><br>
-<span id="revdate">Instituto Federal Catarinense - Câmpus Blumenau</span>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ol type="none" class="sectlevel1">
@@ -153,7 +152,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <li><a href="#_conhecendo_o_jsoup">Conhecendo o Jsoup</a></li>
 </ol>
 </li>
-<li><a href="#_desafio">Desafio</a></li>
+<li><a href="#_desafio_1">Desafio 1</a></li>
 </ol>
 </div>
 </div>
@@ -190,6 +189,25 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="paragraph">
 <p>Este tutorial irá cobrir esses dois tópicos, utilizando o Jsoup como biblioteca de suporte. Em um primeiro momento, vamos dar uma revisada rápida sobre HTML. Depois, vamos ver como utilizar o Jsoup para extrair informações de arquivos HTML.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">
+<div class="title">O que é "raspagem de dados"?</div>
+<div class="paragraph">
+<p>Raspagem de dados da web (do inglês <em>webscraping</em>) é o ato de utilizar um conjunto de ferramentas para extrair dados de páginas web de forma automatizada. Normalmente, a raspagem de dados é feita por programas que baixam o conteúdo da página e analisam a mesma para extrair informações.</p>
+</div>
+<div class="paragraph">
+<p>Mecanismos de busca, como o Google, utilizam técnicas de raspagem de dados para construção de suas bases de dados de palavras-chave e referências. O software que faz isso é chamado de <em>web crawler</em> e possui a tarefa de varrer a web armazenando as palavras que encontrar e seguir todos os links encontrados nessas páginas.</p>
+</div>
+
+</td>
+</tr>
+</table>
+</div>
 
 </div>
 </div>
@@ -223,59 +241,42 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 <div class="content monospaced">
 <pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;html&gt;</span>
-        <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;head&gt;</span>
+        <span class="tag">&lt;title&gt;</span>Uma página qualquer<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;/head&gt;</span>
+    <span class="tag">&lt;body&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content-header</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                Aqui vai um conteúdo
+                <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.google.com/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>qualquer<span class="tag">&lt;/a&gt;</span>,
+                um texto sem fundamento algum, escrito sem a mínima
+                intenção de despertar qualquer interesse por parte
+                do <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">link-old</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> leitor<span class="tag">&lt;/a&gt;</span>.
+            <span class="tag">&lt;/p&gt;</span>
 
-        <span class="tag">&lt;/head&gt;</span>
+            <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">content-data</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;p&gt;</span>16/03/2013<span class="tag">&lt;/p&gt;</span>
+            <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
 
-        <span class="tag">&lt;body&gt;</span>
-                <span class="tag">&lt;p&gt;</span>Um texto <span class="tag">&lt;b&gt;</span>bem<span class="tag">&lt;/b&gt;</span> interessante aqui.<span class="tag">&lt;/p&gt;</span>
-        <span class="tag">&lt;/body&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footer</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            Nenhum direito reservado.
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/body&gt;</span>
 <span class="tag">&lt;/html&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Dentro do elemento delimitado pela tag <code>body</code>, temos um elemento do tipo <code>p</code>. A tag <code>p</code> é utilizada para indicar que o texto envolto por ela será apresentado como novo parágrafo. Já a tag <code>b</code> faz com que o texto que esteja envolvido por ela seja apresentado em negrito. No HTML acima, temos 5 elementos no total, sendo que alguns estão aninhados dentro de outros:</p>
+<p>Dentro do elemento delimitado pela tag <code>body</code>, temos dois elementos <code>div</code>. Dentro do primeiro <code>div</code> (identificado unicamente pelo nome <code>content</code>), temos um parágrafo (<code>p</code>) contendo um texto com dois links <code>a</code> dentro, e outro <code>div</code>, com um parágrafo contento uma data. No segundo <code>div</code> (definido como sendo do tipo <code>footer</code>), temos um apenas um texto. Veja a imagem abaixo para entender melhor a estrutura do HTML.</p>
 </div>
-<div class="ulist">
-
-<ul>
-<li>
-<p>html</p>
-<div class="ulist">
-
-<ul>
-<li>
-<p>head</p>
-</li>
-<li>
-<p>body</p>
-<div class="ulist">
-
-<ul>
-<li>
-<p>p</p>
-<div class="ulist">
-
-<ul>
-<li>
-<p>b</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/3.0.png" alt="3.0" width="400">
 </div>
 
-</li>
-</ul>
-</div>
-
-</li>
-</ul>
-</div>
-
-</li>
-</ul>
 </div>
 <div class="paragraph">
-<p>Ou seja, um documento HTML é composto por uma estrutura hierárquica de elementos. Cada elemento é composto pelo nome da tag, pelos atributos passados à tag e por nós filhos. Cada elemento dentro de um HTML é "filho" de outro elemento, isto é, está contido dentro de outro elemento, com exceção do "pai" de todos, o elemento raiz, definido pela tag HTML.</p>
+<p>Como você pôde ver, um documento HTML é composto por uma estrutura hierárquica de elementos. Cada elemento é composto pelo nome da tag, pelos atributos passados à tag e por nós filhos. Cada elemento dentro de um HTML é "filho" de outro elemento, isto é, está contido dentro de outro elemento, com exceção do "pai" de todos, o elemento raiz, definido pela tag <code>html</code>.</p>
 </div>
 <div class="paragraph">
 <p>Esse documento HTML pode então renderizado por um navegador.</p>
@@ -301,25 +302,14 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </div>
 </div>
 <div class="paragraph">
-<p>Com isso, também é possível escrever programas que obtenham somente os elementos que tenham o atributo <code>class</code> definido como <code>container</code>. Ou seja, as classes CSS podem ser utilizadas como mecanismo para deixar marcas semânticas no HTML.</p>
+<p>Isso facilita bastante o trabalho de quem está escrevendo programas para extrair informações de dentro de códigos HTML. No <a href="http://www.reddit.com/">reddit.com</a>, que lista links interessates sobre os mais variados assuntos, todos os títulos de links estão "marcados" com a classe <code>title</code>. Ou seja, é barbadinha escrever um extrator de informações do reddit, pois basta procurar no HTML dele por elementos que pertençam à classe <code>title</code>. Para melhorar ainda mais, a maioria das bibliotecas para fazer extração de informações de HTML já possuem métodos prontos que fazem isso pra gente.</p>
 </div>
 
 </div>
 <div class="sect2">
 <h3 id="_mais_sobre_html">Mais sobre HTML</h3>
 <div class="paragraph">
-<p>Para saber mais sobre HTML, leia um dos tutoriais abaixo:</p>
-</div>
-<div class="ulist">
-
-<ul>
-<li>
-<p><a href="http://developer.mozilla.org/pt-BR/docs/Web/HTML">http://developer.mozilla.org/pt-BR/docs/Web/HTML</a></p>
-</li>
-<li>
-<p><a href="http://pt-br.html.net/tutorials/html/">http://pt-br.html.net/tutorials/html/</a></p>
-</li>
-</ul>
+<p>Para saber mais sobre HTML, leia a <a href="http://developer.mozilla.org/pt-BR/docs/Web/HTML">documentação da Mozilla sobre o assunto</a>. Além disso, para explorar mais as páginas HTML e entender melhor suas estruturas, aprenda a utilizar as "Ferramentas do Desenvolvedor" do Google Chrome (<a href="http://www.youtube.com/watch?v=wGmQGYM5wLM">vídeo explicativo</a>) ou o <a href="http://getfirebug.com/">Firebug</a>, que é um plugin que funciona tanto no Firefox quanto no Chrome.</p>
 </div>
 
 </div>
@@ -330,12 +320,12 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <h2 id="_jsoup">Jsoup</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Agora que já sabemos o que é um arquivo HTML e como ele é composto, podemos começar a brincar de extrair informações utilizando a biblioteca Jsoup em nossos programas Java. Antes de mais nada, é preciso "instalar" o Jsoup.</p>
+<p>Agora que já sabemos o que é um arquivo HTML e como ele é composto, podemos começar a brincar de "raspar" as páginas web utilizando a biblioteca Jsoup em nossos programas Java. Mas, antes de mais nada, é preciso "instalar" o Jsoup.</p>
 </div>
 <div class="sect2">
 <h3 id="_instala_o">Instalação</h3>
 <div class="paragraph">
-<p>Vá até a página de downloads do Jsoup e baixe o arquivo <code>jsoup-x-y-z.jar</code> que estiver listado na página. Observe que <code>x</code>, <code>y</code> e <code>z</code> são números relativos à versão atual do Jsoup, que no momento da escrita deste tutorial era <code>1.7.3</code>.</p>
+<p>Vá até a <a href="http://jsoup.org/download">página de downloads do Jsoup</a> e baixe o arquivo <code>jsoup-x-y-z.jar</code> que estiver listado na página. Observe que <code>x</code>, <code>y</code> e <code>z</code> são números relativos à versão atual do Jsoup, que no momento da escrita deste tutorial era <code>1.7.3</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -757,7 +747,7 @@ Revelamos Zac, a Arma Secreta
 </div>
 </div>
 <div class="sect1">
-<h2 id="_desafio">Desafio</h2>
+<h2 id="_desafio_1">Desafio 1</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Sabendo como obter e filtrar o conteúdo de uma página web, escreva um programa que monitore o fórum do LOL e emita um aviso sonoro quando houver uma nova postagem.</p>
@@ -769,7 +759,7 @@ Revelamos Zac, a Arma Secreta
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-05-03 15:44:10 BRT
+Last updated 2014-05-03 17:03:02 BRT
 </div>
 </div>
 </body>
