@@ -456,8 +456,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java">
-        <span class="directive">public</span> <span class="directive">static</span> <span class="predefined-type">Connection</span> connect(<span class="predefined-type">String</span> url)</code></pre>
+<pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="directive">static</span> <span class="predefined-type">Connection</span> connect(<span class="predefined-type">String</span> url)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -614,7 +613,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="java language-java">        Elements e = doc.select(<span class="string"><span class="delimiter">&quot;</span><span class="content">a.thread-title-link</span><span class="delimiter">&quot;</span></span>)</code></pre>
+<pre class="CodeRay"><code class="java language-java">Elements e = doc.select(<span class="string"><span class="delimiter">&quot;</span><span class="content">a.thread-title-link</span><span class="delimiter">&quot;</span></span>)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -656,19 +655,24 @@ O que queremos extrair da página principal do fórum do LOL são os títulos do
 <pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">org.jsoup.Jsoup</span>;
 <span class="keyword">import</span> <span class="include">org.jsoup.nodes.Element</span>;
 <span class="keyword">import</span> <span class="include">org.jsoup.nodes.Document</span>;
-<span class="keyword">import</span> <span class="include">org.jsoup.nodes.Elements</span>;
+<span class="keyword">import</span> <span class="include">org.jsoup.select.Elements</span>;
+<span class="keyword">import</span> <span class="include">java.io.IOException</span>;
 
 <span class="directive">public</span> <span class="type">class</span> <span class="class">ListadorDeTopicosLOL</span>
 {
-        <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args)
-        {
-                <span class="predefined-type">String</span> url = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://forums.br.leagueoflegends.com/board/forumdisplay.php?f=13</span><span class="delimiter">&quot;</span></span>;
-                <span class="predefined-type">Document</span> doc = Jsoup.connect(url).get();
-                Elements e = doc.select(<span class="string"><span class="delimiter">&quot;</span><span class="content">a.thread-title-link</span><span class="delimiter">&quot;</span></span>)
-                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; e.size(); i++) {
-                      <span class="predefined-type">System</span>.out.println(e.get(i).text());
-                }
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args)
+    {
+        <span class="predefined-type">String</span> url = <span class="string"><span class="delimiter">&quot;</span><span class="content">http://forums.br.leagueoflegends.com/board/forumdisplay.php?f=13</span><span class="delimiter">&quot;</span></span>;
+        <span class="keyword">try</span> {
+            <span class="predefined-type">Document</span> doc = Jsoup.connect(url).get();
+            Elements e = doc.select(<span class="string"><span class="delimiter">&quot;</span><span class="content">a.thread-title-link</span><span class="delimiter">&quot;</span></span>);
+            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; e.size(); i++) {
+                <span class="predefined-type">System</span>.out.println(e.get(i).text());
+            }
+        } <span class="keyword">catch</span> (<span class="exception">IOException</span> e) {
+            e.printStackTrace();
         }
+    }
 }</code></pre>
 </div>
 </div>
@@ -747,7 +751,7 @@ Revelamos Zac, a Arma Secreta
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-05-03 11:25:17 BRT
+Last updated 2014-05-03 12:37:28 BRT
 </div>
 </div>
 </body>
