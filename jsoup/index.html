@@ -161,7 +161,29 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <h2 id="_introdu_o">Introdução</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="http://jsoup.org/">JSoup</a> é uma biblioteca Java para manipulação de conteúdo em formato HTML. Com ela, é possível ler e extrair informações de arquivos HTML com facilidade. Você, jogador(a) de <em>League of Legends</em> (LOL), deve acessar com frequência o fórum do LOL no Brasil, para saber de novidades relacionadas ao jogo. O fórum é uma página assim:</p>
+<p>A Web está repleta de informações. A grande maioria dessas informações é descrita em um formato chamado <a href="http://pt.wikipedia.org/wiki/HTML">HTML</a>. Dados que se encontram nesse formato são renderizados pelos navegadores web, dando aos usuários uma visão mais amigável desses dados. Porém, esse formato não é muito amigável para o programador que deseja extrair informações de dentro dele. É um tanto comum precisarmos buscar e extrair da web algum tipo de informação. Por exemplo, existem várias páginas na web que fornecem a previsão do tempo; mas como fazer para obter os dados da previsão e mostrá-los no aplicativo que estamos desenvolvendo? Seria necessário criar um programa capaz de baixar e ler o HTML e procurar por essa informação lá dentro. Esse tipo de trabalho é chamado de "raspagem de dados da web", e é um tanto trabalhoso e complexo se realizado sem a utilização de mecanismos apropriados.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">
+<div class="title">O que é "raspagem de dados"?</div>
+<div class="paragraph">
+<p>Raspagem de dados da web (do inglês <em>webscraping</em>) é o ato de utilizar um conjunto de ferramentas para extrair dados de páginas web de forma automatizada. Normalmente, a raspagem de dados é feita por programas que baixam o conteúdo da página e analisam a mesma para extrair informações.</p>
+</div>
+<div class="paragraph">
+<p>Mecanismos de busca, como o Google, utilizam técnicas de raspagem de dados para construção de suas bases de dados de palavras-chave e referências. O software que faz isso é chamado de <em>web crawler</em> e possui a tarefa de varrer a web armazenando as palavras que encontrar e seguir todos os links encontrados nessas páginas.</p>
+</div>
+
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="http://jsoup.org/">JSoup</a> é uma biblioteca Java para manipulação de conteúdo em formato HTML. Com ela, é possível ler e extrair informações de arquivos HTML com facilidade. Você, jogador(a) de <em>League of Legends</em> (LOL), deve acessar com frequência o fórum do LOL no Brasil, para saber de novidades relacionadas ao jogo. A imagem abaixo mostra a página principal do fórum:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -189,25 +211,6 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="paragraph">
 <p>Este tutorial irá cobrir esses dois tópicos, utilizando o Jsoup como biblioteca de suporte. Em um primeiro momento, vamos dar uma revisada rápida sobre HTML. Depois, vamos ver como utilizar o Jsoup para extrair informações de arquivos HTML.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="./images/icons/note.png" alt="Note">
-</td>
-<td class="content">
-<div class="title">O que é "raspagem de dados"?</div>
-<div class="paragraph">
-<p>Raspagem de dados da web (do inglês <em>webscraping</em>) é o ato de utilizar um conjunto de ferramentas para extrair dados de páginas web de forma automatizada. Normalmente, a raspagem de dados é feita por programas que baixam o conteúdo da página e analisam a mesma para extrair informações.</p>
-</div>
-<div class="paragraph">
-<p>Mecanismos de busca, como o Google, utilizam técnicas de raspagem de dados para construção de suas bases de dados de palavras-chave e referências. O software que faz isso é chamado de <em>web crawler</em> e possui a tarefa de varrer a web armazenando as palavras que encontrar e seguir todos os links encontrados nessas páginas.</p>
-</div>
-
-</td>
-</tr>
-</table>
-</div>
 
 </div>
 </div>
@@ -232,7 +235,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </div>
 </div>
 <div class="paragraph">
-<p>Cada trecho de um código HTML é delimitado por <strong>tags</strong>. Por exemplo, a tag <strong>&lt;html&gt;</strong> delimita o início e o final do documento HTML. Já as tags <strong>&lt;head&gt;</strong> e <strong>&lt;body&gt;</strong> delimitam, respectivamente, o <strong>cabeçalho</strong>, que irá conter metadados sobre a página, e o <strong>corpo</strong> do documento, que será todo o conteúdo da página em si. Cada valor delimitado por uma tag é chamado de <strong>elemento</strong> do HTML.</p>
+<p>Cada trecho de um código HTML é delimitado por <strong>tags</strong>. Por exemplo, a tag <strong>&lt;html&gt;</strong> delimita o início e o final do documento HTML. Já as tags <strong>&lt;head&gt;</strong> e <strong>&lt;body&gt;</strong> delimitam, respectivamente, o <strong>cabeçalho</strong>, que irá conter metadados sobre a página, e o <strong>corpo</strong> do documento, que terá o conteúdo da página em si. Cada valor delimitado por uma tag é chamado de <strong>elemento</strong> do HTML.</p>
 </div>
 <div class="paragraph">
 <p>Dentro de um elemento HTML podemos ter outros elementos. Por exemplo:</p>
@@ -267,7 +270,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </div>
 </div>
 <div class="paragraph">
-<p>Dentro do elemento delimitado pela tag <code>body</code>, temos dois elementos <code>div</code>. Dentro do primeiro <code>div</code> (identificado unicamente pelo nome <code>content</code>), temos um parágrafo (<code>p</code>) contendo um texto com dois links <code>a</code> dentro, e outro <code>div</code>, com um parágrafo contento uma data. No segundo <code>div</code> (definido como sendo do tipo <code>footer</code>), temos um apenas um texto. Veja a imagem abaixo para entender melhor a estrutura do HTML.</p>
+<p>Dentro do elemento delimitado pela tag <code>body</code>, temos dois elementos <code>div</code>. Dentro do primeiro <code>div</code> (identificado unicamente pelo nome <code>content</code>), temos um parágrafo (<code>p</code>) contendo um texto com dois links <code>a</code> dentro, e outro <code>div</code>, com um parágrafo contento uma data. No segundo <code>div</code> (definido como sendo do tipo <code>footer</code>), temos apenas um texto. Veja a imagem abaixo para entender melhor a estrutura do HTML.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -302,7 +305,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </div>
 </div>
 <div class="paragraph">
-<p>Isso facilita bastante o trabalho de quem está escrevendo programas para extrair informações de dentro de códigos HTML. No <a href="http://www.reddit.com/">reddit.com</a>, que lista links interessates sobre os mais variados assuntos, todos os títulos de links estão "marcados" com a classe <code>title</code>. Ou seja, é barbadinha escrever um extrator de informações do reddit, pois basta procurar no HTML dele por elementos que pertençam à classe <code>title</code>. Para melhorar ainda mais, a maioria das bibliotecas para fazer extração de informações de HTML já possuem métodos prontos que fazem isso pra gente.</p>
+<p>Isso facilita bastante o trabalho de quem está escrevendo programas para extrair informações de dentro de códigos HTML. No <a href="http://www.reddit.com/">reddit.com</a>, que lista links interessantes sobre os mais variados assuntos, todos os títulos de links estão "marcados" com a classe <code>title</code>. Ou seja, é barbadinha escrever um extrator de informações do reddit, pois basta procurar no HTML dele por elementos que pertençam à classe <code>title</code>. Para melhorar ainda mais, a maioria das bibliotecas para fazer extração de informações de HTML já possuem métodos prontos que fazem isso pra gente.</p>
 </div>
 
 </div>
@@ -344,7 +347,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 </table>
 </div>
 <div class="paragraph">
-<p>Para que possamos utilizar a biblioteca recém baixada nossos programas, precisaremos adicionar tal biblioteca ao editor no qual estivermos desenvolvendo, para que ele saiba onde procurar as classes quando formos utilizá-las.</p>
+<p>Para que possamos utilizar a biblioteca recém baixada nos nossos programas, precisaremos adicionar tal biblioteca ao editor no qual estivermos desenvolvendo, para que ele saiba onde procurar as classes quando formos utilizá-las.</p>
 </div>
 <div class="sect3">
 <h4 id="_drjava">DrJava</h4>
@@ -383,7 +386,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 
 </div>
 <div class="paragraph">
-<p>Feito isso, seu projeto está apto a utilizar a API Jsoup.</p>
+<p>Feito isso, seu projeto estará apto a utilizar a API Jsoup.</p>
 </div>
 
 </div>
@@ -435,7 +438,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="sect2">
 <h3 id="_conhecendo_o_jsoup">Conhecendo o Jsoup</h3>
 <div class="paragraph">
-<p>Antes de escrevermos nossos programas para "hackear" os nossos sites preferidos, precisaremos aprender um pouco mais sobre a estrutura do Jsoup. Com o Jsoup, podemos obter o conteúdo de páginas web e também fazer o <em>parsing</em> do documento HTML retornado.</p>
+<p>Antes de escrevermos nossos programas para "raspar" os nossos sites preferidos, precisaremos aprender um pouco mais sobre a estrutura do Jsoup. Com o Jsoup, podemos obter o conteúdo de páginas web e também fazer o <em>parsing</em> do documento HTML retornado.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -459,7 +462,7 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="sect3">
 <h4 id="_baixando_uma_p_gina_com_o_jsoup">Baixando uma página com o Jsoup</h4>
 <div class="paragraph">
-<p>Para escrever um programinha que "hackeia" o conteúdo do fórum do LOL, a primeira coisa que temos que aprender é como baixar uma página web utilizando o Jsoup. Para fazer isso, vamos utilizar o método estático <a href="http://jsoup.org/apidocs/org/jsoup/Jsoup.html#connect(java.lang.String)"><code>Jsoup.connect()</code></a>. Esse método é definido da seguinte forma:</p>
+<p>Para escrever um programinha que "raspa" o conteúdo do fórum do LOL, a primeira coisa que temos que aprender é como baixar uma página web utilizando o Jsoup. Para fazer isso, vamos utilizar o método estático <a href="http://jsoup.org/apidocs/org/jsoup/Jsoup.html#connect(java.lang.String)"><code>Jsoup.connect()</code></a>. Esse método é definido da seguinte forma:</p>
 </div>
 <div class="listingblock">
 
@@ -484,22 +487,6 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
         <span class="predefined-type">Document</span> doc = Jsoup.connect(url).get();
 ...</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="./images/icons/note.png" alt="Note">
-</td>
-<td class="content">
-<div class="title">O que significa "hackear" algo?</div>
-<div class="paragraph">
-<p>Diferentemente do que a cultura popular prega, hackear não significa roubar, invadir ou prejudicar algo ou alguém. Hackear algo significa elaborar uma solução criativa envolvendo conhecimentos especializados para um problema qualquer. Assim, quando dizemos que vamos hackear o fórum do LOL, o que queremos dizer é que vamos obter as informações lá apresentadas, sem precisar acessar o site através de um navegador. Ou seja, estamos criando um mecanismo para facilitar a nossa vida, com base em conhecimentos específicos que temos (Java e Jsoup).</p>
-</div>
-
-</td>
-</tr>
-</table>
 </div>
 
 </div>
@@ -584,23 +571,23 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="paragraph">
 <p>Se quisermos obter todos os links de uma determinada página, vamos utilizar o método <code>select()</code> novamente, mas dessa vez passando uma informação adicional. Um link em HTML é composto por uma tag <strong>a</strong> contendo um atributo <strong>href</strong> com o valor da URL. Veja um exemplo de um link:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 
 <div class="content monospaced">
-<pre>&lt;a href="http://www.google.com.br"&gt; texto do link &lt;/a&gt;</pre>
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.google.com.br</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> texto do link <span class="tag">&lt;/a&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Assim, para obter todas as tags <strong>a</strong> que contenham um atributo <strong>href</strong>, podemos passar ao <code>select()</code> <strong>o nome da tag com o nome do atributo entre colchetes</strong>:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 
 <div class="content monospaced">
-<pre>Elements elements = doc.select("a[href]");</pre>
+<pre class="CodeRay"><code class="java language-java">Elements elements = doc.select(<span class="string"><span class="delimiter">&quot;</span><span class="content">a[href]</span><span class="delimiter">&quot;</span></span>);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Portanto, para obter os elementos do HTML que possuem determinado atributo, basta passar <code>nome da tag[nome do atributo]</code> ao método <code>select()</code>.</p>
+<p>Portanto, para obter os elementos do HTML que <strong>possuem</strong> determinado atributo, basta passar  ao método <code>select()</code> uma string no formato <code>"nome da tag[nome do atributo]"</code>.</p>
 </div>
 
 </div>
@@ -630,10 +617,10 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="html language-html">        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">codigo</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-                algum conteúdo qualquer
-                aqui
-        <span class="tag">&lt;/div&gt;</span></code></pre>
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">codigo</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        algum conteúdo qualquer
+        aqui
+<span class="tag">&lt;/div&gt;</span></code></pre>
 </div>
 </div>
 
@@ -643,15 +630,15 @@ table.CodeRay td { padding: 2px 4px; vertical-align: top; }
 <div class="sect3">
 <h4 id="_obtendo_os_t_tulos_do_f_rum_do_lol">Obtendo os títulos do Fórum do LOL</h4>
 <div class="paragraph">
-<p>Você já deve ter percebido que, para cada informação que quisermos extrair de uma página, precisaremos antes analisar o HTML da página para definir como extrair tal informação da página.
-O que queremos extrair da página principal do fórum do LOL são os títulos dos tópicos listados nela. Analisando o HTML dessa página, vimos que cada título de tópico está envolto de uma tag <strong>a</strong> parecida com:</p>
+<p>Você já deve ter percebido que, para cada informação que quisermos extrair de uma página, precisaremos antes analisar o HTML da mesma para definir como extrair tal informação dela.
+O que queremos extrair da página principal do fórum do LOL são os títulos dos tópicos listados nela. Analisando o HTML dessa página, vimos que cada título de tópico está envolto por uma tag <strong>a</strong> parecida com:</p>
 </div>
 <div class="listingblock">
 
 <div class="content monospaced">
-<pre class="CodeRay"><code class="html language-html">        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">showthread.php?t=82704</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">thread_title_82704</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">float-left thread-title-link thread-status_new</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-                RP Bônus Extra por tempo limitado
-        <span class="tag">&lt;/a&gt;</span></code></pre>
+<pre class="CodeRay"><code class="html language-html"><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">showthread.php?t=82704</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">thread_title_82704</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">float-left thread-title-link thread-status_new</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        RP Bônus Extra por tempo limitado
+<span class="tag">&lt;/a&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -683,6 +670,22 @@ O que queremos extrair da página principal do fórum do LOL são os títulos do
         }
 }</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">
+<div class="title">Tratamento de Exceções</div>
+<div class="paragraph">
+<p>Uma exceção é um evento inesperado que ocorre durante a execução de um programa Java e que pode ser tratada através de estruturas específica para o tratamento de exceções como <code>try-catch</code>. Em Java, blocos de código que têm potencial para disparar uma exceção devem ser envoltos com um bloco <code>try-catch</code>, como o mostrado no código acima. O método <code>get</code> é um exemplo de método que pode gerar uma exceção, causada por uma possível falha de conexão com a rede. Sendo assim, ele deve ser envolto por um bloco de tratamento de exceções. Leia mais na <a href="http://www.caelum.com.br/apostila-java-orientacao-objetos/excecoes-e-controle-de-erros/">apostila da Caelum</a>.</p>
+</div>
+
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Executando o código acima, obteremos os seguintes resultados:</p>
@@ -759,7 +762,7 @@ Revelamos Zac, a Arma Secreta
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-05-03 17:03:02 BRT
+Last updated 2014-05-05 15:09:51 BRT
 </div>
 </div>
 </body>
