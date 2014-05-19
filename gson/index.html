@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Asciidoctor 0.1.3">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manipulando JSON em Java com Gson</title>
+<link rel="stylesheet" href="./stylesheets/golo.css">
+<style>
+.CodeRay {
+  background-color: hsl(0,0%,95%);
+  border: 1px solid silver;
+  color: black;
+}
+.CodeRay pre {
+  margin: 0px;
+}
+
+span.CodeRay { white-space: pre; border: 0px; padding: 2px; }
+
+table.CodeRay { border-collapse: collapse; width: 100%; padding: 2px; }
+table.CodeRay td { padding: 2px 4px; vertical-align: top; }
+
+.CodeRay .line-numbers {
+  background-color: hsl(180,65%,90%);
+  color: gray;
+  text-align: right;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.CodeRay .line-numbers a {
+  background-color: hsl(180,65%,90%) !important;
+  color: gray !important;
+  text-decoration: none !important;
+}
+.CodeRay .line-numbers a:target { color: blue !important; }
+.CodeRay .line-numbers .highlighted { color: red !important; }
+.CodeRay .line-numbers .highlighted a { color: red !important; }
+.CodeRay span.line-numbers { padding: 0px 4px; }
+.CodeRay .line { display: block; float: left; width: 100%; }
+.CodeRay .code { width: 100%; }
+
+.CodeRay .debug { color: white !important; background: blue !important; }
+
+.CodeRay .annotation { color:#007 }
+.CodeRay .attribute-name { color:#b48 }
+.CodeRay .attribute-value { color:#700 }
+.CodeRay .binary { color:#509 }
+.CodeRay .char .content { color:#D20 }
+.CodeRay .char .delimiter { color:#710 }
+.CodeRay .char { color:#D20 }
+.CodeRay .class { color:#B06; font-weight:bold }
+.CodeRay .class-variable { color:#369 }
+.CodeRay .color { color:#0A0 }
+.CodeRay .comment { color:#777 }
+.CodeRay .comment .char { color:#444 }
+.CodeRay .comment .delimiter { color:#444 }
+.CodeRay .complex { color:#A08 }
+.CodeRay .constant { color:#036; font-weight:bold }
+.CodeRay .decorator { color:#B0B }
+.CodeRay .definition { color:#099; font-weight:bold }
+.CodeRay .delimiter { color:black }
+.CodeRay .directive { color:#088; font-weight:bold }
+.CodeRay .doc { color:#970 }
+.CodeRay .doc-string { color:#D42; font-weight:bold }
+.CodeRay .doctype { color:#34b }
+.CodeRay .entity { color:#800; font-weight:bold }
+.CodeRay .error { color:#F00; background-color:#FAA }
+.CodeRay .escape  { color:#666 }
+.CodeRay .exception { color:#C00; font-weight:bold }
+.CodeRay .float { color:#60E }
+.CodeRay .function { color:#06B; font-weight:bold }
+.CodeRay .global-variable { color:#d70 }
+.CodeRay .hex { color:#02b }
+.CodeRay .imaginary { color:#f00 }
+.CodeRay .include { color:#B44; font-weight:bold }
+.CodeRay .inline { background-color: hsla(0,0%,0%,0.07); color: black }
+.CodeRay .inline-delimiter { font-weight: bold; color: #666 }
+.CodeRay .instance-variable { color:#33B }
+.CodeRay .integer  { color:#00D }
+.CodeRay .key .char { color: #60f }
+.CodeRay .key .delimiter { color: #404 }
+.CodeRay .key { color: #606 }
+.CodeRay .keyword { color:#080; font-weight:bold }
+.CodeRay .label { color:#970; font-weight:bold }
+.CodeRay .local-variable { color:#963 }
+.CodeRay .namespace { color:#707; font-weight:bold }
+.CodeRay .octal { color:#40E }
+.CodeRay .operator { }
+.CodeRay .predefined { color:#369; font-weight:bold }
+.CodeRay .predefined-constant { color:#069 }
+.CodeRay .predefined-type { color:#0a5; font-weight:bold }
+.CodeRay .preprocessor { color:#579 }
+.CodeRay .pseudo-class { color:#00C; font-weight:bold }
+.CodeRay .regexp .content { color:#808 }
+.CodeRay .regexp .delimiter { color:#404 }
+.CodeRay .regexp .modifier { color:#C2C }
+.CodeRay .regexp { background-color:hsla(300,100%,50%,0.06); }
+.CodeRay .reserved { color:#080; font-weight:bold }
+.CodeRay .shell .content { color:#2B2 }
+.CodeRay .shell .delimiter { color:#161 }
+.CodeRay .shell { background-color:hsla(120,100%,50%,0.06); }
+.CodeRay .string .char { color: #b0b }
+.CodeRay .string .content { color: #D20 }
+.CodeRay .string .delimiter { color: #710 }
+.CodeRay .string .modifier { color: #E40 }
+.CodeRay .string { background-color:hsla(0,100%,50%,0.05); }
+.CodeRay .symbol .content { color:#A60 }
+.CodeRay .symbol .delimiter { color:#630 }
+.CodeRay .symbol { color:#A60 }
+.CodeRay .tag { color:#070 }
+.CodeRay .type { color:#339; font-weight:bold }
+.CodeRay .value { color: #088; }
+.CodeRay .variable  { color:#037 }
+
+.CodeRay .insert { background: hsla(120,100%,50%,0.12) }
+.CodeRay .delete { background: hsla(0,100%,50%,0.12) }
+.CodeRay .change { color: #bbf; background: #007; }
+.CodeRay .head { color: #f8f; background: #505 }
+.CodeRay .head .filename { color: white; }
+
+.CodeRay .delete .eyecatcher { background-color: hsla(0,100%,50%,0.2); border: 1px solid hsla(0,100%,45%,0.5); margin: -1px; border-bottom: none; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.CodeRay .insert .eyecatcher { background-color: hsla(120,100%,50%,0.2); border: 1px solid hsla(120,100%,25%,0.5); margin: -1px; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; }
+
+.CodeRay .insert .insert { color: #0c0; background:transparent; font-weight:bold }
+.CodeRay .delete .delete { color: #c00; background:transparent; font-weight:bold }
+.CodeRay .change .change { color: #88f }
+.CodeRay .head .head { color: #f4f }
+
+</style>
+</head>
+<body class="article toc2">
+<div id="header">
+<h1>Manipulando JSON em Java com Gson</h1>
+<span id="author">Prof. Valdir Stumm Júnior - &lt;valdir.stumm@blumenau.ifc.edu.br&gt;</span><br>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ol type="none" class="sectlevel1">
+<li><a href="#_json_em_java_com_gson">JSON em Java com Gson</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#_instala_o">Instalação</a></li>
+<li><a href="#_usando_o_gson">Usando o Gson</a></li>
+<li><a href="#_manipulando_objetos_de_estrutura_desconhecida">Manipulando objetos de estrutura desconhecida</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://pt.wikipedia.org/wiki/JSON">JSON</a> é um formato muito popular para representação de dados, utilizado principalmente para a troca de dados entre programas. Veja abaixo o exemplo de um objeto de um tipo <code>Pessoa</code> representado em JSON:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">{
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">nome</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">João da Silva Sauro</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">cpf</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">999.999.999-99</span><span class="delimiter">&quot;</span></span>,
+    <span class="string"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">joao@joao.com</span><span class="delimiter">&quot;</span></span>,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Por ser puramente textual, esse formato permite que programas escritos em linguagens de programação diferentes troquem dados de uma forma descomplicada. Como um programa escrito em Java poderia trocar dados com um programa escrito em Python? Cada uma tem sua forma de representar objetos na memória. Um objeto Java não poderia ser carregado na memória de um programa Python, pois não são compatíveis.</p>
+</div>
+<div class="paragraph">
+<p>Usando JSON, o programa escrito em Java gera uma representação JSON do objeto em questão (que vai ser uma simples string) e envia ao programa escrito em Python, que sabendo como manipular JSON, pega a representação em JSON e constrói um objeto Python.</p>
+</div>
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_json_em_java_com_gson">JSON em Java com Gson</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://code.google.com/p/google-gson/">Gson</a> é uma biblioteca Java desenvolvida pela Google que implementa as funcionalidades necessárias para codificar objetos Java em formato JSON e para decodificar conteúdo JSON para objetos Java.</p>
+</div>
+<div class="sect2">
+<h3 id="_instala_o">Instalação</h3>
+<div class="paragraph">
+<p>Vá até a <a href="http://code.google.com/p/google-gson/downloads/list">página de downloads do projeto</a> e baixe o arquivo .zip contendo o Gson. Feito isso, extraia o conteúdo (especialmente o arquivo <code>gson-x-y-z.jar</code>) para um local conhecido.</p>
+</div>
+<div class="sect3">
+<h4 id="_drjava">DrJava</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_netbeans">NetBeans</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_pela_linha_de_comando">Pela linha de comando</h4>
+
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_usando_o_gson">Usando o Gson</h3>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">com.google.gson.Gson</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">GsonExample</span> {
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+        Pessoa p = <span class="keyword">new</span> Pessoa(<span class="string"><span class="delimiter">&quot;</span><span class="content">João da Silva Sauro</span><span class="delimiter">&quot;</span></span>, <span class="integer">20</span>, <span class="float">75.2</span>, <span class="float">1.81</span>);
+        Gson gson = <span class="keyword">new</span> Gson();
+
+        <span class="predefined-type">String</span> json = gson.toJson(p);
+        <span class="predefined-type">System</span>.out.println(json);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong> fazer merge com texto do outro notebook</p>
+</div>
+
+</div>
+<div class="sect2">
+<h3 id="_manipulando_objetos_de_estrutura_desconhecida">Manipulando objetos de estrutura desconhecida</h3>
+<div class="paragraph">
+<p>Quando manipulamos objetos JSON vindos da web, é muito possível que não conheçamos de antemão a estrutura desses objetos. Por exemplo, se quisermos escrever um programa que obtem a lista de posts de um determinado subreddit do <a href="http://www.reddit.com">reddit.com</a>, nós não temos uma classe previamente criada para representar cada um dos posts que irão existir no JSON retornado.</p>
+</div>
+<div class="paragraph">
+<p>Quando ocorrer uma situação dessas, podemos tratar esses dados como <code>JsonObject</code>, o que permite que acessemos campos individuais do JSON através de métodos específicos.</p>
+</div>
+<div class="paragraph">
+<p>Bom, chega de conversa e vamos ver um exemplo prático para entendermos melhor.</p>
+</div>
+<div class="sect3">
+<h4 id="_pegando_dados_do_reddit">Pegando dados do Reddit</h4>
+<div class="paragraph">
+<p>Para cada URL do reddit, podemos adicionar o sufixo <code>".json"</code> para obter o conteúdo daquela URL em formato JSON. Essa é uma iniciativa bem legal do reddit, pois facilita a vida do desenvolvedor que quiser adicionar dados do reddit em sua aplicação. (<em>kudos para eles!</em>)</p>
+</div>
+<div class="paragraph">
+<p>Antes de qualquer coisa, temos que obter o conteúdo JSON do subreddit desejado. O código abaixo faz isso:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="predefined-type">InputStream</span> input = <span class="keyword">new</span> <span class="predefined-type">URL</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.reddit.com/r/programming/.json</span><span class="delimiter">&quot;</span></span>).openStream();
+<span class="predefined-type">Reader</span> reader = <span class="keyword">new</span> <span class="predefined-type">InputStreamReader</span>(input, <span class="string"><span class="delimiter">&quot;</span><span class="content">UTF-8</span><span class="delimiter">&quot;</span></span>);
+<span class="predefined-type">Scanner</span> s = <span class="keyword">new</span> <span class="predefined-type">Scanner</span>(reader);
+<span class="predefined-type">String</span> json = s.nextLine();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Criamos um <a href="http://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html"><code>InputStream</code></a> ligado à URL do reddit e logo em seguida criamos um objeto <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Reader.html"><code>Reader</code></a> sobre esse <code>InputStream</code> e sobre ele criamos um <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html"><code>Scanner</code></a>, de onde lemos o conteúdo JSON, que é enviado todo em uma linha só, podendo ser lido com o método <code>nextLine()</code>.</p>
+</div>
+<div class="paragraph">
+<p>Veja um pequeno trecho do JSON obtido:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code>{
+    'kind': 'Listing',
+    'data': {
+        'modhash': '',
+        'children': [{
+                'kind': 't3',
+                'data': {
+                    'domain': 'i.imgur.com',
+                    'subreddit': 'WTF',
+                    'likes': None,
+                    'id': '1ajwg4',
+                    'title': 'This was the disabled toilet at an airport in Myanmar. I was questioned by security for 25 minutes after taking it.',
+                    'score': 1,
+                    'over_18': False,
+                    'downs': 25,
+                    'saved': False,
+                    'is_self': False,
+                    'permalink': '/r/WTF/comments/1ajwg4/this_was_the_disabled_toilet_at_an_airport_in/',
+                    'name': 't3_1ajwg4',
+                    'created': 1363673738.0,
+                    'url': 'http://i.imgur.com/gRqqYTq.jpg',
+                    'author_flair_text': None,
+                    'author': 'mfizzled',
+                    'created_utc': 1363644938.0,
+                    'num_comments': 17,
+                    'ups': 26
+                }
+            },
+            // outros elementos foram omitidos para simplificar
+        ],
+        'after': 't3_1ajoim',
+        'before': None
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Acima podemos ver que os posts do reddit estão dentro de um array JSON (nomeado como <code>'children'</code>). Cada post vai ter um elemento <code>'data'</code> que contém os dados relativos a ele, como título (<code>'title'</code>), URL (<code>'url'</code>), usuário que postou (<code>'author'</code>), dentre outros.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note">
+</td>
+<td class="content">
+<div class="title">Arrays JSON</div>
+<div class="paragraph">
+<p>Em JSON, coleções de elementos são representados por arrays. Enquanto objetos comuns são delimitados por <code>{</code> e <code>}</code>, os arrays JSON são delimitados por <code>[</code> e <code>]</code>. Abaixo podemos ver um exemplo de dados em formato JSON, contendo uma informação do tipo string e um array de objetos, cada um contendo dois inteiros.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="json language-json">{
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">nome</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">João</span><span class="delimiter">&quot;</span></span>,
+    <span class="key"><span class="delimiter">&quot;</span><span class="content">notas</span><span class="delimiter">&quot;</span></span>: [
+        {<span class="key"><span class="delimiter">&quot;</span><span class="content">nota</span><span class="delimiter">&quot;</span></span>: <span class="integer">9</span>, <span class="key"><span class="delimiter">&quot;</span><span class="content">peso</span><span class="delimiter">&quot;</span></span>: <span class="integer">2</span>},
+        {<span class="key"><span class="delimiter">&quot;</span><span class="content">nota</span><span class="delimiter">&quot;</span></span>: <span class="integer">8</span>, <span class="key"><span class="delimiter">&quot;</span><span class="content">peso</span><span class="delimiter">&quot;</span></span>: <span class="integer">3</span>},
+        {<span class="key"><span class="delimiter">&quot;</span><span class="content">nota</span><span class="delimiter">&quot;</span></span>: <span class="integer">7</span>, <span class="key"><span class="delimiter">&quot;</span><span class="content">peso</span><span class="delimiter">&quot;</span></span>: <span class="integer">3</span>},
+        {<span class="key"><span class="delimiter">&quot;</span><span class="content">nota</span><span class="delimiter">&quot;</span></span>: <span class="integer">4</span>, <span class="key"><span class="delimiter">&quot;</span><span class="content">peso</span><span class="delimiter">&quot;</span></span>: <span class="integer">2</span>}
+    ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O array pode ser obtido no exemplo acima acessando o campo <code>"notas"</code> no objeto JSON.</p>
+</div>
+
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Agora temos o conteúdo JSON retornado pelo reddit em uma string chamada <code>json</code>. Nosso trabalho agora é extrair informações dessa string. O conteúdo JSON recebido não pode ser mapeado para algum objeto previamente conhecido, como <code>Pessoa</code>, <code>Aluno</code>, etc, pois sua estrutura é definida pelo site que o fornece. Assim, vamos tratá-lo com os tipos fornecidos pela biblioteca Gson, que são: <a href="http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/JsonElement.html"><code>JsonElement</code></a>, <a href="http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/JsonObject.html"><code>JsonObject</code></a> e <a href="http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/JsonArray.html"><code>JsonArray</code></a>.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">JsonParser parser = <span class="keyword">new</span> JsonParser();
+JsonObject jsobj = parser.parse(json).getAsJsonObject();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Primeiro criamos um <code>JsonParser</code>, que é o objeto que fará a análise e separação do conteúdo do JSON recebido. Para obtermos a lista de posts, precisamos antes obter o elemento <code>data</code>, que contém o elemento <code>children</code>.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java">JsonArray posts = jsobj.getAsJsonObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span>).getAsJsonArray(<span class="string"><span class="delimiter">&quot;</span><span class="content">children</span><span class="delimiter">&quot;</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Agora temos em <code>posts</code> um array JSON que poderemos percorrer para obter os dados desejados. Como já vimos anteriormente, dentro do array, temos vários objetos contendo alguns campos, dentre os quais está o campo <code>data</code>, que contém os dados que nos interessam. Veja o exemplo abaixo:</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">for</span> (JsonElement p : posts) {
+  <span class="predefined-type">String</span> title = p.getAsJsonObject().getAsJsonObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span>).get(<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>).getAsString();
+  <span class="predefined-type">String</span> url = p.getAsJsonObject().getAsJsonObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span>).get(<span class="string"><span class="delimiter">&quot;</span><span class="content">url</span><span class="delimiter">&quot;</span></span>).getAsString();
+  <span class="predefined-type">System</span>.out.println(title + <span class="string"><span class="delimiter">&quot;</span><span class="content">-</span><span class="delimiter">&quot;</span></span> + url);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>No código acima, percorremos todos os elementos contidos no array retornado e acessamos o campo <code>data</code>, que por sua vez possui um campo <code>title</code> e um campo <code>url</code>, dentre outros dados úteis.</p>
+</div>
+<div class="listingblock">
+
+<div class="content monospaced">
+<pre class="CodeRay"><code class="java language-java"><span class="keyword">import</span> <span class="include">com.google.gson.Gson</span>;
+<span class="keyword">import</span> <span class="include">java.io.InputStream</span>;
+<span class="keyword">import</span> <span class="include">java.io.Reader</span>;
+<span class="keyword">import</span> <span class="include">java.io.InputStreamReader</span>;
+<span class="keyword">import</span> <span class="include">java.net.URL</span>;
+<span class="keyword">import</span> <span class="include">java.util.Scanner</span>;
+<span class="keyword">import</span> <span class="include">com.google.gson.JsonParser</span>;
+<span class="keyword">import</span> <span class="include">com.google.gson.JsonArray</span>;
+<span class="keyword">import</span> <span class="include">com.google.gson.JsonElement</span>;
+<span class="keyword">import</span> <span class="include">com.google.gson.JsonObject</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">TesteReddit</span> {
+
+  <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+    <span class="keyword">try</span> {
+      <span class="predefined-type">InputStream</span> input = <span class="keyword">new</span> <span class="predefined-type">URL</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.reddit.com/r/programming/.json</span><span class="delimiter">&quot;</span></span>).openStream();
+      <span class="predefined-type">Reader</span> reader = <span class="keyword">new</span> <span class="predefined-type">InputStreamReader</span>(input, <span class="string"><span class="delimiter">&quot;</span><span class="content">UTF-8</span><span class="delimiter">&quot;</span></span>);
+      <span class="predefined-type">Scanner</span> s = <span class="keyword">new</span> <span class="predefined-type">Scanner</span>(reader);
+      <span class="predefined-type">String</span> json = s.nextLine();
+
+      JsonParser parser = <span class="keyword">new</span> JsonParser();
+      JsonObject jsobj = parser.parse(json).getAsJsonObject();
+      JsonArray posts = jsobj.getAsJsonObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span>).getAsJsonArray(<span class="string"><span class="delimiter">&quot;</span><span class="content">children</span><span class="delimiter">&quot;</span></span>);
+      <span class="keyword">for</span> (JsonElement post : posts) {
+        <span class="predefined-type">String</span> title = post.getAsJsonObject().getAsJsonObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span>).get(<span class="string"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>).getAsString();
+        <span class="predefined-type">String</span> url = post.getAsJsonObject().getAsJsonObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">data</span><span class="delimiter">&quot;</span></span>).get(<span class="string"><span class="delimiter">&quot;</span><span class="content">url</span><span class="delimiter">&quot;</span></span>).getAsString();
+        <span class="predefined-type">System</span>.out.println(title + <span class="string"><span class="delimiter">&quot;</span><span class="content">-</span><span class="delimiter">&quot;</span></span> + url);
+      }
+    } <span class="keyword">catch</span>(<span class="exception">Exception</span> e) {
+      e.printStackTrace();
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/io/FileWriter.html">http://docs.oracle.com/javase/7/docs/api/java/io/FileWriter.html</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://code.google.com/p/google-http-java-client/wiki/HTTP">https://code.google.com/p/google-http-java-client/wiki/HTTP</a></p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2014-05-19 00:01:27 BRT
+</div>
+</div>
+</body>
+</html>
