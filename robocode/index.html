@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="AsciiDoc 8.6.9">
@@ -833,16 +833,6 @@ install: function(toclevels) {
 asciidoc.install(2);
 /*]]>*/
 </script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-48870410-1', 'stummjr.github.io');
-  ga('send', 'pageview');
-
-</script>
 </head>
 <body class="article">
 <div id="header">
@@ -850,7 +840,6 @@ asciidoc.install(2);
 <span id="author">Prof. Valdir Stumm Júnior - &lt;valdir.stumm@blumenau.ifc.edu.br&gt;</span><br>
 <span id="revdate">Instituto Federal Catarinense - Câmpus Blumenau</span>
 <div id="toc">
-  <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
 </div>
 </div>
@@ -968,7 +957,6 @@ asciidoc.install(2);
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<img src="./images/icons/note.png" alt="Note">
 </td>
 <td class="content">
 <div class="title">Isaac Asimov</div>
@@ -1041,7 +1029,6 @@ Antes de qualquer coisa, precisamos conhecer a arena de batalha. A arena é uma 
 style="
 width:100%;
 ">
-<caption class="title">Table 1. Heading do nosso robô</caption>
 <col style="width:25%;">
 <col style="width:25%;">
 <col style="width:25%;">
@@ -1080,7 +1067,6 @@ width:100%;
 style="
 width:100%;
 ">
-<caption class="title">Table 2. Exemplos de Bearing</caption>
 <col style="width:50%;">
 <col style="width:50%;">
 <tbody>
@@ -1117,7 +1103,6 @@ width:100%;
 style="
 width:100%;
 ">
-<caption class="title">Table 3. Bearing normalizado vs plano de coordenadas polares</caption>
 <col style="width:50%;">
 <col style="width:50%;">
 <tbody>
@@ -1170,7 +1155,6 @@ detecta um adversário no radar (é chamado o método <span class="monospaced">o
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<img src="./images/icons/note.png" alt="Note">
 </td>
 <td class="content">
 <div class="title">Mas quem chama esse método quando o robô bate na parede?</div>
@@ -1226,7 +1210,6 @@ http://www.gnu.org/software/src-highlite -->
 style="
 width:100%;
 ">
-<caption class="title">Table 4. Métodos e eventos</caption>
 <col style="width:50%;">
 <col style="width:50%;">
 <thead>
@@ -1322,7 +1305,6 @@ Rotacione a arma 360 graus para a direita.
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<img src="./images/icons/note.png" alt="Note">
 </td>
 <td class="content">
 <div class="title">Herança</div>
@@ -1404,7 +1386,6 @@ http://www.gnu.org/software/src-highlite -->
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
-<img src="./images/icons/note.png" alt="Note">
 </td>
 <td class="content">
 <div class="title">Math.abs</div>
@@ -1462,11 +1443,117 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_junior_robot">10. Junior Robot</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_introdução_2">10.1. Introdução</h3>
+<div class="paragraph"><p><span class="monospaced">JuniorRobot</span> é um dos três tipos de robôs que podemos criar com o Robocode, sendo esta sua forma mais principante. Sua vantagem em relação ao <span class="monospaced">Robot</span> é que o <span class="monospaced">Junior</span> é mais simples de se utilizar, possuindo comandos mais específicos e métodos que não temos no <span class="monospaced">Robot</span> padrão. Sua desvantagem é a limitação em alguns aspectos, mas nada que impeça a criação de um bom robô.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_criação_e_métodos">10.2. Criação e Métodos</h3>
+<div class="paragraph"><p>Para começarmos a criar nosso primeiro <span class="monospaced">JuniorRobot</span> abra o <em>Robot Editor</em> e então vá no menu <span class="monospaced">File → New → Junior Robot</span>. Será aberto então um editor igual ao do <span class="monospaced">Robot</span>, com os mesmos métodos a serem implementados, tendo como única diferença que a classe estará estendendo <span class="monospaced">JuniorRobot</span> ao invés de <span class="monospaced">Robot</span>.</p></div>
+<div class="paragraph"><p>Para criar o robô, também não se diferencia em nada, somente nos métodos. Aqui temos alguns métodos que serão bem utilizados na implementação:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:50%;">
+<col style="width:50%;">
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top" >Método </th>
+<th class="tableblock halign-left valign-top" >Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">ahead(int distance)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Move o tanque para a frente <span class="monospaced">distance</span> pixels.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">back(int distance)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Move o tanque para a frente <span class="monospaced">distance</span> pixels.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnLeft(int x)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Vira o robô para a esquerda em <span class="monospaced">x</span> graus.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnRight(int x)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Vira o robô para a direita em <span class="monospaced">x</span> graus.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnTo (int x)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Vira o robô para o grau informado de acordo com o plano de coordenadas polares.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnAheadLeft(int distance, int degrees)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Anda para frente fazendo curva para esquerda. Os parâmetros indicam o quanto mover e quantos graus girar para a esquerda.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnAheadRight(int distance, int degrees)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Anda para frente fazendo curva para direita. Os parâmetros indicam o quanto mover e quantos graus girar para a direita.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnBackLeft(int distance, int degrees)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Anda para trás fazendo curva para esquerda. Os parâmetros indicam o quanto mover e quantos graus girar para a esquerda.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnBackRight(int distance, int degrees)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Anda para trás fazendo curva para direita. Os parâmetros indicam o quanto mover e quantos graus girar para a direita.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnGunLeft(int x)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Vira a arma para a esquerda em <span class="monospaced">x</span> graus.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnGunRight(int x)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Vira a arma para a direita em <span class="monospaced">x</span> graus.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">turnGunTo(int x)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Vira a arma para o grau informado de acordo com o plano de coordenadas polares.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">fire()</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Atira com força padrão (1).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"><span class="monospaced">fire(double power)</span></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Aceita como parâmetro uma força entre 0.1 e 3 para atirar.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph"><p>Os métodos "turnGunTo()" e "turnTo()" envolvem o plano de coordenadas polares. Neste plano, o topo da tela é 360º ou 0º; o lado direito é 90º; a base é 180º; e o lado esquerdo é 270º.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/31.png" alt="images/img/31.png" width="400">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/32.png" alt="images/img/32.png" width="400">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/33.png" alt="images/img/33.png" width="400">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/img/34.png" alt="images/img/34.png" width="400">
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-03-24 07:46:30 BRT
+template::[footer-text]
 </div>
 </div>
 </body>
