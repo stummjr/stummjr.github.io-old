@@ -1,0 +1,63 @@
+@import url(http://fonts.googleapis.com/css?family=Architects+Daughter);
+
+
+html {
+    font-size: 100%;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+  color:#444;
+  font-family: Georgia, Times, serif;
+  font-size:16px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  padding-bottom: 0.1em;
+  border: 1px solid #8e8e8e;
+}
+
+h1 {
+    font-size:2.8em;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+h1 + h2 {
+    margin-top: 50px;
+}
+
+h1, h2 {
+    font-family: "Architects Daughter", Arial, sans-serif;
+    font-weight:normal;
+    color:#111;
+}
+
+h2 {
+    font-size: 2.0em;
+    border-bottom: 1px solid silver;
+    padding-bottom: 0px;
+    padding-top: 20px;
+}
+
+footer {
+    margin-top: 50px;
+    border-top: 1px solid #dedede;
+    color: #868686;
+    font-size: 0.8em;
+    margin-bottom: 0px;
+    font-family: "Architects Daughter";
+}
+
+a { color: #0645ad; text-decoration:none;}
+a:visited { color: #0b0080; }
+a:hover { color: #06e; }
+a:active { color:#faa700; }
+a:focus { outline: thin dotted; }
+a:hover, a:active { outline: 0; }
