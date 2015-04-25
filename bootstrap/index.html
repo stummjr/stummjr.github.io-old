@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutorial de Bootstrap - Web Design</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/tutorial.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Framework CSS - Bootstrap</h1>
+            <p>O bootstrap é um framework CSS para o desenvolvimento de projetos web responsivos.</p>
+            <ul>
+                <li>É um conjunto de recursos para serem utilizados em páginas HTML: classes CSS para personalizar o visual e o comportamento de componentes</li>
+                <li>Cria um visual consistente através de elementos visuais para a maioria das tags HTML</li>
+                <li>Ícones, grids, botões, etc.</li>
+            </ul>
+            <small>Este material é uma adaptação da documentação oficial, disponível em: <a href="http://getbootstrap.com/css">getbootstrap.com/css</a></small>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Como utilizar o Bootstrap?</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Instalação</h3>
+                <p>Baixe o pacote Bootstrap em: <a href="http://getbootstrap.com/getting-started/#download">getbootstrap.com/getting-started/#download</a></p>
+
+                <h3>Utilização</h3>
+                <p>Para usá-lo, extraia as 3 pastas do bootstrap (<code>css</code>, <code>js</code> e <code>fonts</code>) em um diretório acessível a partir do diretório do seu projeto e então inclua os arquivos na sua página:</p>
+                <pre>
+&lt;link rel="stylesheet" href="css/bootstrap.css" /&gt;
+                </pre>
+                <p>No exemplo acima, considere que a pasta <code>css</code> está dentro da mesma pasta do arquivo HTML em questão.</p>
+
+                <p>Feito isso, os elementos HTML que você adicionar à sua página passarão a ter o estilo padrão do Bootstrap.</p>
+
+                <h3>Testando o Bootstrap</h3>
+                <p>Teste o código abaixo em uma página com o bootstrap incluso e também em uma página sem o bootstrap (utilizando as definições-padrão do web browser):</p>
+                <pre>
+&lt;h1&gt;Hello, world!&lt;/h1&gt;
+&lt;p&gt;Testando um recurso simples do Bootstrap.&lt;/p&gt;
+                </pre>
+                <p>Abaixo podemos ver o resultado:</p>
+                <figure>
+                    <img src="img/1.jpg" alt="Página sem o Bootstrap" class="htmlview" />
+                    <figcaption>Fig 1. Página sem o Bootstrap</figcaption>
+                </figure>
+                <br />
+                <figure>
+                    <img src="img/2.jpg" alt="Página com o Bootstrap" class="htmlview" />
+                    <figcaption>Fig 2. Página com o Bootstrap</figcaption>
+                </figure>
+                <br />
+                <p>Como podemos ver, a simples inclusão do arquivo CSS do Bootstrap já faz com que alguns estilos sejam aplicados aos nossos elementos. Isso acontece porque os elementos HTML como <code>h1</code> e <code>p</code> possuem estilos personalizados nas folhas de estilo desse framework.</p>
+
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Incluindo o jQuery no seu projeto</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p><strong>Atenção!</strong> Para tirar maior proveito do Bootstrap, é preciso incluir no seu HTML o framework JavaScript <a href="http://jquery.com/">jQuery</a>. Para tanto, insira no final do seu arquivo HTML (pode ser a última instrução antes de fechar o <code>body</code>) o seguinte conteúdo:
+                        </p>
+                        <code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;</script></code>
+                    </div>
+                </div>
+                <p>
+                    Tendo o bootstrap funcionando em seu projeto, agora vamos explorar um pouco as suas principais funcionalidades, começando pelo sistema de grade.
+                </p>
+
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Grid System</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    O sistema de grid do Bootstrap divide o espaço horizontal da página em 12 pedaços. Isso permite que o designer divida o conteúdo da página em até 12 colunas.
+                </p>
+                <p>
+                    Veja abaixo alguns exemplos de leiautes divididos igualmente.
+                </p>
+                <p class="lead">
+                    3 partes iguais de 4 colunas
+                </p>
+                <div class="row">
+                    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+                    <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
+                    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+                </div>
+                <p class="lead">
+                    6 partes iguais de 2 colunas
+                </p>
+                <div class="row">
+                    <div class="col-sm-2" style="background-color:lavender;">.col-sm-2</div>
+                    <div class="col-sm-2" style="background-color:lavenderblush;">.col-sm-2</div>
+                    <div class="col-sm-2" style="background-color:lavender;">.col-sm-2</div>
+                    <div class="col-sm-2" style="background-color:lavenderblush;">.col-sm-2</div>
+                    <div class="col-sm-2" style="background-color:lavender;">.col-sm-2</div>
+                    <div class="col-sm-2" style="background-color:lavenderblush;">.col-sm-2</div>
+                </div>
+                <p class="lead">
+                    12 partes iguais de 1 coluna
+                </p>
+                <div class="row">
+                    <div class="col-sm-1" style="background-color:lavender;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavenderblush;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavender;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavenderblush;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavender;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavenderblush;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavender;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavenderblush;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavender;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavenderblush;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavender;">sm-1</div>
+                    <div class="col-sm-1" style="background-color:lavenderblush;">sm-1</div>
+                </div>
+                <p>
+                    Para obter esse efeito de grid, é preciso criar um <code>div</code> com a classe <code>container</code>, e dentro desse <code>div</code> colocar um outro <code>div</code> com a classe <code>row</code>. Depois disso, é só definir a divisão de colunas, através de <code>divs</code> com classes <code>col-sm-x</code>, onde <code>x</code> é um número. A soma dos <code>x</code> de um <code>row</code> deverá ser 12. Veja o código do grid de 3 partes iguais de 4 colunas:
+                </p>
+                <pre>
+&lt;div class="row"&gt;
+    &lt;div class="col-sm-4"&gt;.col-sm-4&lt;/div&gt;
+    &lt;div class="col-sm-4"&gt;.col-sm-4&lt;/div&gt;
+    &lt;div class="col-sm-4"&gt;.col-sm-4&lt;/div&gt;
+&lt;/div&gt;
+                </pre>
+                <p>
+                    Em outro exemplo, temos um leiaute dividido em 2 partes diferentes, um ocupando 4 colunas e outro ocupando 8 colunas.
+                </p>
+                <div class="row">
+                    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+                    <div class="col-sm-8" style="background-color:lavenderblush;">.col-sm-8</div>
+                </div>
+                <p>
+                    O código que gerou tal leiaute é:
+                </p>
+                <pre>
+&lt;div class="row"&gt;
+    &lt;div class="col-sm-4"&gt;.col-sm-4&lt;/div&gt;
+    &lt;div class="col-sm-8"&gt;.col-sm-4&lt;/div&gt;
+&lt;/div&gt;
+                </pre>
+                <h3>Deslocando colunas</h3>
+                <p>
+                    As classes <code>col-sm-offset-*</code> permitem que façamos um deslocamento na posição de uma coluna, onde <code>*</code> é a quantidade de colunas que desejamos mover para a direita.
+                </p>
+                <div class="row">
+                    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+                    <div class="col-sm-4 col-sm-offset-4" style="background-color:lavender;">.col-sm-4 .col-sm-offset-4</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tipografia (inspecione o elemento para entender como foi feito)</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    Só de incluir o bootstrap em seu projeto, as suas páginas já terão uma aparência diferente, porque o bootstrap possui estilos próprios para os cabeçalhos e para textos em geral. Agora vamos ver alguns exemplos (use a ferramenta de inspeção do seu navegador para visualizar como cada elemento foi estilizado):
+                </p>
+
+                <h1>Este é um Heading 1<small>com um subtítulo usando small</small></h1>
+                <h2>Este é um Heading 2</h2>
+                <p>Aqui temos um parágrafo com texto <mark>marcado</mark>, feito com o elemento <code>mark</code> (a propósito, elementos marcados com <code>code</code> ficam <code>com fonte monoespaçada e com cor de fundo e de frente destacadas</code>).</p>
+                Textos dentro de <code>pre</code> ficam assim:
+                <pre>
+olha como fica um
+textinho dentro
+de um pre.
+                </pre>
+                <p>
+                    Até o <code>kbd</code> fica estiloso, olha só: <kbd>ctrl + alt + del</kbd>
+                </p>
+                <p>
+                    <p>As classes contextuais de texto servem para dar significado ao texto através de cores:</p>
+                    <p class="text-muted">Texto pouco destacado.</p>
+                    <p class="text-primary">Texto importante.</p>
+                    <p class="text-success">Texto que indica sucesso.</p>
+                    <p class="text-info">Texto com alguma informação.</p>
+                    <p class="text-warning">Texto que representa um alerta.</p>
+                    <p class="text-danger">Texto que indica perigo.</p>
+                </p>
+                <p>
+                    Elementos <code>del</code><del>ficam rabiscados</del>. Já os elementos <code>small</code> ficam em um <small>tamanho menor, está vendo?</small>.
+                </p>
+                <p class="lead">
+                    Se você quiser um parágrafo mais destacado, pode colocar a classe <code>lead</code> na tag <code>p</code>.
+                    Se você quiser alinhar o texto, o Bootstrap permite o seguinte:
+                </p>
+                <p class="text-right">
+                    Dá pra alinhar parágrafos à direita com a classe <code>text-right</code> no <code>p</code>.
+                </p>
+                <p class="text-left">
+                    À esquerda com a classe <code>text-left</code> no <code>p</code>.
+                </p>
+                <p class="text-center">
+                    Dá até pra centralizar com a classe <code>text-center</code> no <code>p</code>.
+                </p>
+                <p class="text-justify">
+                    A classe <code>text-justify</code> justifica o texto. Um textinho justificado cai bem para o leitor de um longo texto, mesmo que seja um texto que diz nada com coisa alguma como este texto que estou escrevendo aqui neste momento.
+                </p>
+            </div>
+        </div>
+        <h2>Tabelas</h2>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Como usar tabelas com o Bootstrap (inspecione o elemento para ver como está marcado)</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <caption>Este é o <code>caption</code> da tabela</caption>
+                    <thead>
+                        <tr>
+                            <th>Ano</th>
+                            <th>Linguagem de Programação</th>
+                            <th>Criador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1995</td>
+                            <td>Java</td>
+                            <td>James Gosling</td>
+                        </tr>
+                        <tr>
+                            <td>1991</td>
+                            <td>Python</td>
+                            <td>Guido Van Rossum</td>
+                        </tr>
+                        <tr>
+                            <td>1995</td>
+                            <td>Ruby</td>
+                            <td>Yukihiro Matsumoto</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    Se quiser a mesma tabela com linhas listradas adicione a classe <code>table-striped</code> à tabela. Já a classe <code>table-bordered</code> coloca borda na tabela. As classes podem ser colocadas em conjunto.
+                </p>
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <caption>Uma tabela com as classes <code>table-striped</code>, <code>table-bordered</code>, <code>table-hover</code> e <code>table-condensed</code>.</caption>
+                    <thead>
+                        <tr>
+                            <th>Ano</th>
+                            <th>Linguagem de Programação</th>
+                            <th>Criador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1995</td>
+                            <td>Java</td>
+                            <td>James Gosling</td>
+                        </tr>
+                        <tr>
+                            <td>1991</td>
+                            <td>Python</td>
+                            <td>Guido Van Rossum</td>
+                        </tr>
+                        <tr>
+                            <td>1995</td>
+                            <td>Ruby</td>
+                            <td>Yukihiro Matsumoto</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    É possível também dar destaque individual à algumas linhas com as seguintes classes: <code>active</code>, <code>success</code>, <code>info</code>, <code>warning</code> e <code>danger</code>.
+                </p>
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <caption>Na tabela abaixo a linha da linguagem Python tem a classe <code>success</code>.</caption>
+                    <thead>
+                        <tr>
+                            <th>Ano</th>
+                            <th>Linguagem de Programação</th>
+                            <th>Criador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1995</td>
+                            <td>Java</td>
+                            <td>James Gosling</td>
+                        </tr>
+                        <tr class="success">
+                            <td>1991</td>
+                            <td>Python</td>
+                            <td>Guido Van Rossum</td>
+                        </tr>
+                        <tr>
+                            <td>1995</td>
+                            <td>Ruby</td>
+                            <td>Yukihiro Matsumoto</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    Tabelas com a classe <code>table-responsive</code> tornam-se "roláveis" quando vistas em dispositivos com telas pequenas.
+                </p>
+            </div>
+        </div>
+        <h2>Formulários</h2>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Formulários (inspecione o elemento para ver como está marcado)</h3>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Adicionar email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Senha</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Arquivo</label>
+                        <input type="file" id="exampleInputFile">
+                        <p class="help-block">Example block-level help text here.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputDisabled">Entrada desabilitada</label>
+                        <input type="text" id="exampleInputDisabled" class="form-control" disabled>
+                        <p class="help-block"></p>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Manter conectado
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-default">Entrar</button>
+                </form>
+                <p>
+                    <i>Form groups</i> são usados para agrupar e alinhar elementos de formulário. Acima colocamos o <code>label</code> e o respectivo <code>input</code> dentro de um <code>div.form-group</code> para que eles ficassem alinhados corretamente.
+                </p>
+                <p>
+                    Para que o <code>input</code> tenha a aparência acima apresentada, é preciso adicionar a classe <code>form-control</code> a ele.
+                </p>
+                <p>
+                    Veja os demais tipos de campos de formulário suportados em: <a href="http://getbootstrap.com/css/#forms-controls">getbootstrap.com/css/#forms-controls</a>
+                </p>
+                <h3>Estados de Validação</h3>
+                <p>
+                    Os inputs podem também ter indicações sobre a operação realizada, como: erro, atenção e sucesso. Basta incluir as classes <code>has-error</code>, <code>has-success</code> ou <code>has-warning</code> em um elemento pai, porque daí todos os elementos filhos de classes <code>control-label</code>, <code>form-control</code> e <code>help-block</code> assumirão a cor correspondente ao estado.
+                    Veja abaixo dois exemplos onde as classes de estado foram incluídas no <code>div.form-group</code> que agrupa os pares <code>label</code>-<code>input</code>:
+                </p>
+                <div class="form-group has-error">
+                    <label class="control-label" for="exampleInputWithError">Entrada com erro</label>
+                    <input type="text" id="exampleInputWithError" class="form-control">
+                    <p class="help-block">
+                        Ajuda sobre o preenchimento. Sou um <code>p.help-block</code>.
+                    </p>
+                </div>
+                <div class="form-group has-success">
+                    <label class="control-label" for="inputSuccess1">Entrada com sucesso</label>
+                    <input type="text" class="form-control" id="inputSuccess1">
+                </div>
+                <div class="form-group has-success has-feedback">
+                    <label class="control-label" for="inputSuccess2">Input with success</label>
+                    <input type="text" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                </div>
+                <p>
+                    Para descobrir como adicionar ícones de estado ao seu formulário, veja a documentação em: <a href="http://getbootstrap.com/css/#with-optional-icons">getbootstrap.com/css/#with-optional-icons</a>
+                </p>
+
+                <h2>Formulários inline</h2>
+                <p>
+                    Para termos um formulário inline, basta adicionarmos a classe <code>form-inline</code> ao formulário em questão. Veja (inspecione o elemento para ver como foi feito):
+                </p>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="exampleInputName2">Nome</label>
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Seu nome aqui">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Seu email aqui">
+                    </div>
+                    <button type="submit" class="btn btn-default">Enviar convite</button>
+                </form>
+                <h3>input-group-addon</h3>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">R$</div>
+                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="quantidade">
+                            <div class="input-group-addon">.00</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Transferir</button>
+                    </form>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Botões</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    O Bootstrap fornece um conjunto de classes para botões que podem ser utilizadas em elementos <code>a</code>, <code>button</code> ou <code>input</code>. Veja alguns exemplos (inspecione os elementos):
+                </p>
+                <a class="btn btn-default" href="#" role="button">Link</a>
+                <button class="btn btn-default" type="submit">Button</button>
+                <input class="btn btn-default" type="button" value="Input">
+                <input class="btn btn-default" type="submit" value="Submit">
+                <h2>Estilizando botões</h2>
+                <p>
+                    As classes <code>btn-*</code> são utilizadas para definir o tipo de botão que vamos utilizar em nosso site. Veja abaixo os tipos de botões (o rótulo do botão é o nome da classe que deve ser usada em conjunto com a classe <code>btn</code>):
+                </p>
+                <button type="button" class="btn btn-default">btn-default</button>
+                <button type="button" class="btn btn-primary">btn-primary</button>
+                <button type="button" class="btn btn-success">btn-success</button>
+                <button type="button" class="btn btn-info">btn-info</button>
+                <button type="button" class="btn btn-warning">btn-warning</button>
+                <button type="button" class="btn btn-danger">btn-danger</button>
+                <button type="button" class="btn btn-link">btn-link</button>
+                <p>
+                    Os tamanhos também podem ser ajustados usando as classes <code>btn-lg</code>, <code>btn-sm</code> ou <code>btn-xs</code>.
+                </p>
+                    <button type="button" class="btn btn-primary btn-lg">Large button</button>
+                    <button type="button" class="btn btn-default btn-lg">Large button</button>
+                    </p>
+                    <p>
+                    <button type="button" class="btn btn-primary">Default button</button>
+                    <button type="button" class="btn btn-default">Default button</button>
+                    </p>
+                    <p>
+                    <button type="button" class="btn btn-primary btn-sm">Small button</button>
+                    <button type="button" class="btn btn-default btn-sm">Small button</button>
+                    </p>
+                    <p>
+                    <button type="button" class="btn btn-primary btn-xs">Extra small button</button>
+                    <button type="button" class="btn btn-default btn-xs">Extra small button</button>
+                    <p>
+                        Há também os botões de bloco (definidos com <code>btn-block</code>), cujo tamanho expande até o fim do bloco em que está incluso.
+                    </p>
+                    <button type="button" class="btn btn-danger btn-lg btn-block">Botão de bloco (estilo btn-danger)</button>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Imagens</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    As imagens podem ter sua apresentação alterada através de classes a serem inclusas em elementos <code>img</code>. Veja exemplos de uso das classes <code>img-circle</code>, <code>img-thumbnail</code> e <code>img-rounded</code>, respectivamente:
+                </p>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <figure>
+                            <img src="img/funny.jpg" width="140" alt="img-circle" class="img-circle">
+                            <figcaption><code>img-circle</code></figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-sm-4">
+                        <figure>
+                            <img src="img/funny.jpg" width="140" alt="img-thumbnail" class="img-thumbnail">
+                            <figcaption><code>img-thumbnail</code></figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-sm-4">
+                        <figure>
+                            <img src="img/funny.jpg" width="140" alt="img-rounded" class="img-rounded">
+                            <figcaption><code>img-rounded</code></figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ícones</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    Ícones do pacote <code>glyphicons</code> podem ser adicionados através de elementos <code>span</code> com a classe <code>glyphicon</code> e a classe relativa ao ícone desejado.
+                    Por exemplo, o código abaixo gera um botão com um ícone de telefone como rótulo:
+                    <code>&lt;button type="button" name="button" class="btn btn-primary"&gt;&lt;span class="glyphicon glyphicon-earphone"&gt;&lt;/span&gt; Call&lt;/button&gt;</code>
+                </p>
+                <p>
+                    Veja o botão:
+                </p>
+                <button type="button" name="button" class="btn btn-primary"><span class="glyphicon glyphicon-earphone"></span> Call</button>
+                <p>
+                    Uma lista com todos os ícones disponíveis no pacote pode ser vista em: <a href="http://getbootstrap.com/components/#glyphicons-glyphs">getbootstrap.com/components/#glyphicons-glyphs</a>.
+                </p>
+                <p>
+                    Veja mais alguns exemplos de aplicação de ícones do pacote glyphicons.
+                </p>
+                <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+                </button>
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    Enter a valid email address
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
