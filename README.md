@@ -1,4 +1,4 @@
 stummjr.github.io
 =================
 
-My page.
+My homepage.
