@@ -2,6 +2,14 @@ Mercurial + Bitbucket
 =====================
 Prof. Valdir Stumm Júnior - <valdir.stumm@blumenau.ifc.edu.br>
 
+:toc: right
+:icons: font
+:source-highlighter: coderay
+:language: asciidoc
+:imagesdir: img/
+
+
+
 Este tutorial vai apresentar um passo-a-passo para a utilização do sistema de controle de versão http://mercurial.selenic.com/[Mercurial] em conjunto com o serviço de hospedagem de código e gerenciamento de projetos de software http://bitbucket.org[Bitbucket].
 
 Instalação do Mercurial
@@ -13,7 +21,7 @@ Se você estiver usando Windows, que culpa eu tenho? :P Brincadeira, no Windows,
 
 [[img1]]
 .Finalização da Instalação no Windows
-image::img/1.png[width=300]
+image::1.png[width=300]
 
 .Sistemas Linux baseados em Debian/Ubuntu
 [NOTE]
@@ -28,7 +36,7 @@ Feita a instalação, você pode testá-lo abrindo o shell do seu sistema operac
 
 [[img2]]
 .Execução do Hg
-image::img/2.jpg[width=500]
+image::2.jpg[width=500]
 
 .Por que hg?
 [TIP]
@@ -36,7 +44,7 @@ image::img/2.jpg[width=500]
 O Mercúrio é o elemento de número atômico 80 na tabela periódica e seu símbolo é Hg. Está explicado?
 
 .Um pouquinho de mercúrio líquido
-image::img/3.jpg[width=200]
+image::3.jpg[width=200]
 ====================================
 
 Comandos básicos
