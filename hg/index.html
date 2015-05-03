@@ -458,6 +458,7 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <ul class="sectlevel1">
 <li><a href="#_instala_o_do_mercurial">Instalação do Mercurial</a></li>
 <li><a href="#_comandos_b_sicos">Comandos básicos</a></li>
+<li><a href="#_utilizando_o_bitbucket">Utilizando o BitBucket</a></li>
 </ul>
 </div>
 </div>
@@ -478,11 +479,15 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <div class="paragraph">
 <p>Se você estiver usando Windows, que culpa eu tenho? :P Brincadeira, no Windows, não esqueça de marcar a opção que inclui os executáveis do Mercurial no PATH do seu SO, ao final da instalação. Veja a imagem abaixo:</p>
 </div>
+<div class="exampleblock">
+<div class="content">
 <div id="img1" class="imageblock">
 <div class="content">
 <img src="img/1.png" alt="1" width="300">
 </div>
 <div class="title">Figure 1. Finalização da Instalação no Windows</div>
+</div>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -507,11 +512,15 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <div class="paragraph">
 <p>Feita a instalação, você pode testá-lo abrindo o shell do seu sistema operacional e tentando executar o Mercurial, cujo executável se chama <code>hg</code>. A imagem abaixo apresenta a execução do Mercurial que, sem parâmetro algum, apenas mostra um texto de ajuda:</p>
 </div>
+<div class="exampleblock">
+<div class="content">
 <div id="img2" class="imageblock">
 <div class="content">
 <img src="img/2.jpg" alt="2" width="500">
 </div>
 <div class="title">Figure 2. Execução do Hg</div>
+</div>
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -783,16 +792,59 @@ summary:     Adicionado teste para caso do construtor vazio.
 changeset:   0:80af2b365abe
 user:        "Valdir Stumm Junior &lt;stummjr@gmail.com&gt;"
 date:        Sat May 02 21:32:32 2015 -0300
-summary:     Primeira versão, com método toString() funcionando.
-</pre>
+summary:     Primeira versão, com método toString() funcionando.</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Se quisermos voltar atrás depois de uma alteração, podemos usar o comando <code>revert</code>. Por exemplo, feito o <code>commit</code>, começamos a alterar nosso arquivo <code>HelloWorld.java</code> e, de repente, percebemos que as alterações não fazem sentido e queremos que nosso código volte ao estado do último commit. Para isso, basta:</p>
+</div>
+<div class="listingblock">
+<div class="title">Revertendo alterações</div>
+<div class="content">
+<pre>hg revert HelloWorld.java</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Se quisermos voltar para uma versão de um commit anterior, podemos especificar o número da revisão (versão) no comando:</p>
+</div>
+<div class="listingblock">
+<div class="title">Revertendo para uma revisão (versão) específica</div>
+<div class="content">
+<pre>hg revert -r 0 HelloWorld.java</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O comando acima faz com que o arquivo <code>HelloWorld.java</code> volte para a versão 0. Para ver as versões armazenadas, podemos usar o comando <code>hg log</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ hg log
+changeset:   1:81393c31fa4b
+tag:         tip
+user:        "Valdir Stumm Junior &lt;stummjr@gmail.com&gt;"
+date:        Sat May 02 21:48:39 2015 -0300
+summary:     Adicionado teste para caso do construtor vazio.
+
+changeset:   0:80af2b365abe
+user:        "Valdir Stumm Junior &lt;stummjr@gmail.com&gt;"
+date:        Sat May 02 21:32:32 2015 -0300
+summary:     Primeira versão, com método toString() funcionando.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_utilizando_o_bitbucket">Utilizando o BitBucket</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>&#8230;</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-05-02 22:14:28 BRT
+Last updated 2015-05-03 16:12:09 BRT
 </div>
 </div>
 </body>

@@ -5,10 +5,9 @@ Prof. Valdir Stumm Júnior - <valdir.stumm@blumenau.ifc.edu.br>
 :toc: right
 :icons: font
 :source-highlighter: coderay
+:theme: flask
 :language: asciidoc
 :imagesdir: img/
-
-
 
 Este tutorial vai apresentar um passo-a-passo para a utilização do sistema de controle de versão http://mercurial.selenic.com/[Mercurial] em conjunto com o serviço de hospedagem de código e gerenciamento de projetos de software http://bitbucket.org[Bitbucket].
 
@@ -19,9 +18,11 @@ Antes de mais nada, é preciso instalar o Mercurial em sua máquina. Vá até ht
 
 Se você estiver usando Windows, que culpa eu tenho? :P Brincadeira, no Windows, não esqueça de marcar a opção que inclui os executáveis do Mercurial no PATH do seu SO, ao final da instalação. Veja a imagem abaixo:
 
+=====
 [[img1]]
 .Finalização da Instalação no Windows
 image::1.png[width=300]
+=====
 
 .Sistemas Linux baseados em Debian/Ubuntu
 [NOTE]
@@ -34,9 +35,11 @@ sudo apt-get install mercurial
 
 Feita a instalação, você pode testá-lo abrindo o shell do seu sistema operacional e tentando executar o Mercurial, cujo executável se chama `hg`. A imagem abaixo apresenta a execução do Mercurial que, sem parâmetro algum, apenas mostra um texto de ajuda:
 
+=====
 [[img2]]
 .Execução do Hg
 image::2.jpg[width=500]
+=====
 
 .Por que hg?
 [TIP]
@@ -233,5 +236,38 @@ changeset:   0:80af2b365abe
 user:        "Valdir Stumm Junior <stummjr@gmail.com>"
 date:        Sat May 02 21:32:32 2015 -0300
 summary:     Primeira versão, com método toString() funcionando.
-
 -----
+
+Se quisermos voltar atrás depois de uma alteração, podemos usar o comando `revert`. Por exemplo, feito o `commit`, começamos a alterar nosso arquivo `HelloWorld.java` e, de repente, percebemos que as alterações não fazem sentido e queremos que nosso código volte ao estado do último commit. Para isso, basta:
+
+.Revertendo alterações
+[listing]
+hg revert HelloWorld.java
+
+Se quisermos voltar para uma versão de um commit anterior, podemos especificar o número da revisão (versão) no comando:
+
+.Revertendo para uma revisão (versão) específica
+[listing]
+hg revert -r 0 HelloWorld.java
+
+O comando acima faz com que o arquivo `HelloWorld.java` volte para a versão 0. Para ver as versões armazenadas, podemos usar o comando `hg log`:
+
+
+[listing]
+-----
+$ hg log
+changeset:   1:81393c31fa4b
+tag:         tip
+user:        "Valdir Stumm Junior <stummjr@gmail.com>"
+date:        Sat May 02 21:48:39 2015 -0300
+summary:     Adicionado teste para caso do construtor vazio.
+
+changeset:   0:80af2b365abe
+user:        "Valdir Stumm Junior <stummjr@gmail.com>"
+date:        Sat May 02 21:32:32 2015 -0300
+summary:     Primeira versão, com método toString() funcionando.
+-----
+
+Utilizando o BitBucket
+----------------------
+...
