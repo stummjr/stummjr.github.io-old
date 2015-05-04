@@ -459,6 +459,11 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <li><a href="#_instala_o_do_mercurial">Instalação do Mercurial</a></li>
 <li><a href="#_comandos_b_sicos">Comandos básicos</a></li>
 <li><a href="#_utilizando_o_bitbucket">Utilizando o BitBucket</a></li>
+<li>
+<ul class="sectlevel2">
+<li><a href="#_obtendo_as_alter_es_mais_recentes">Obtendo as alterções mais recentes</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -554,8 +559,8 @@ span.line-numbers { border-right: 1px solid #E5E5E5; color: #999; display: inlin
 <div class="listingblock">
 <div class="title">Criando o diretório para o nosso projeto</div>
 <div class="content">
-<pre>stummjr@qwerty:~$ mkdir src/scm
-stummjr@qwerty:~$ cd src/scm/</pre>
+<pre>$ mkdir src/scm
+$ cd src/scm/</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -837,14 +842,121 @@ summary:     Primeira versão, com método toString() funcionando.</pre>
 <h2 id="_utilizando_o_bitbucket">Utilizando o BitBucket</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>&#8230;</p>
+<p>O <a href="http://bitbucket.org">Bitbucket</a> é um serviço de armazenamento de repositórios de código-fonte na "nuvem". Vamos utilizá-lo como meio de armazenamento para os nossos repositórios, de modo que sempre tenhamos backup de nosso código no Bitbucket. Assim, o bitbucket será o nosso <strong>repositório central</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Antes de qualquer coisa, é preciso registrar-se no Bitbucket, o que pode ser feito através do seguinte endereço: <a href="http://bitbucket.org/account/signup/">bitbucket.org/account/signup/</a>. Após o registro, somos recebidos pela seguinte página:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div id="img4" class="imageblock">
+<div class="content">
+<img src="img/4.jpg" alt="4" width="500">
+</div>
+<div class="title">Figure 4. Tela de boas vindas do Bitbucket</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Ao clicar no botão <em>Create Repository</em>, somos redirecionados para o formulário de criação de repositório:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div id="img5" class="imageblock">
+<div class="content">
+<img src="img/5.jpg" alt="5" width="500">
+</div>
+<div class="title">Figure 5. Criação de um repositório no Bitbucket</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Agora, vamos vincular o nosso repositório Mercurial local ao repositório Mercurial remoto do Bitbucket. Para isso, vamos até a pasta onde está o nosso repositório e vamos fazer um <code>push</code>, enviando os dados do nosso repositório local ao repositório remoto.</p>
+</div>
+<div class="listingblock">
+<div class="title">Vinculando o repositório local ao repositório remoto</div>
+<div class="content">
+<pre>$ cd src/scm
+$ hg push https://stummjr@bitbucket.org/stummjr/pgm3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Como saída, teremos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>pushing to https://stummjr@bitbucket.org/stummjr/pgm3
+http authorization required
+realm: Bitbucket.org HTTP
+user: stummjr
+password:
+searching for changes
+remote: adding changesets
+remote: adding manifests
+remote: adding file changes
+remote: added 2 changesets with 3 changes to 2 files</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Observe que a URL passada ao <code>hg push</code> é a URL do repositório recém criado no Bitbucket, com o nome do usuário precedendo o endereço <code>bitbucket.org</code> (<code>stummjr@bitbucket.org</code>).</p>
+</div>
+<div class="paragraph">
+<p>Se você ficar na dúvida sobre qual é a URL que deve ser passada ao <code>push</code>, clique na opção <em>"I have an existing project"</em> e o Bitbucket irá lhe mostrar a URL e o comando que deve ser executado. Veja na imagem abaixo:</p>
+</div>
+<div id="img6" class="imageblock">
+<div class="content">
+<img src="img/6.png" alt="6" width="600">
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Agora que temos nosso repositório local vinculado ao repositório remoto, podemos continuar trabalhando com o Mercurial da mesma forma que fizemos até então, porém, quando quisermos enviar nossas alterações para o repositório remoto (bitbucket), basta executar o comando <code>hg push</code> (não precisa mais passar a URL, pois a mesma já foi vinculada ao repositório local).</p>
+</div>
+<div class="paragraph">
+<p>Quando quisermos trabalhar em um computador que não tenha o repositório, podemos fazer um clone do mesmo em tal computador, com o comando <code>hg clone</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Clonando o repositório em um novo computador</div>
+<div class="content">
+<pre>hg clone https://stummjr@bitbucket.org/stummjr/pgm3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Feito isso, agora podemos trabalhar com nosso código em qualquer lugar, bastando fazer os commits e os pushes quando for adequado.</p>
+</div>
+<div class="sect2">
+<h3 id="_obtendo_as_alter_es_mais_recentes">Obtendo as alterções mais recentes</h3>
+<div class="paragraph">
+<p>Uma vez que estejamos trabalhando e enviando novas alterações ao repositório central no bitbucket, de vez em quando será necessário atualizar o código local de uma máquina, para que ele receba as alterações mais recentes existentes no bitbucket.</p>
+</div>
+<div class="paragraph">
+<p>Quando seu código local estiver desatualizado com relação ao remoto, faça um <code>hg pull</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ hg pull -u https://stummjr@bitbucket.org/stummjr/pgm3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pronto, agora seu repositório local está atualizado com relação ao servidor.</p>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-05-03 16:12:09 BRT
+Last updated 2015-05-03 21:15:53 BRT
 </div>
 </div>
 </body>

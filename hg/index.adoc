@@ -57,8 +57,8 @@ Agora vamos usar o Mercurial para fazer o controle de versão de um projetinho d
 .Criando o diretório para o nosso projeto
 [listing]
 -----
-stummjr@qwerty:~$ mkdir src/scm
-stummjr@qwerty:~$ cd src/scm/
+$ mkdir src/scm
+$ cd src/scm/
 -----
 
 Depois que estivermos dentro da pasta (o comando `cd` nos levou pra lá), podemos então criar um repositório local com o comando `init` do `hg`:
@@ -270,4 +270,81 @@ summary:     Primeira versão, com método toString() funcionando.
 
 Utilizando o BitBucket
 ----------------------
-...
+
+O http://bitbucket.org[Bitbucket] é um serviço de armazenamento de repositórios de código-fonte na "nuvem". Vamos utilizá-lo como meio de armazenamento para os nossos repositórios, de modo que sempre tenhamos backup de nosso código no Bitbucket. Assim, o bitbucket será o nosso **repositório central**.
+
+Antes de qualquer coisa, é preciso registrar-se no Bitbucket, o que pode ser feito através do seguinte endereço: http://bitbucket.org/account/signup/[bitbucket.org/account/signup/]. Após o registro, somos recebidos pela seguinte página:
+
+=====
+[[img4]]
+.Tela de boas vindas do Bitbucket
+image::4.jpg[width=500]
+=====
+
+Ao clicar no botão __Create Repository__, somos redirecionados para o formulário de criação de repositório:
+
+=====
+[[img5]]
+.Criação de um repositório no Bitbucket
+image::5.jpg[width=500]
+=====
+
+Agora, vamos vincular o nosso repositório Mercurial local ao repositório Mercurial remoto do Bitbucket. Para isso, vamos até a pasta onde está o nosso repositório e vamos fazer um `push`, enviando os dados do nosso repositório local ao repositório remoto.
+
+.Vinculando o repositório local ao repositório remoto
+[listing]
+-----
+$ cd src/scm
+$ hg push https://stummjr@bitbucket.org/stummjr/pgm3
+-----
+
+Como saída, teremos:
+
+[listing]
+-----
+pushing to https://stummjr@bitbucket.org/stummjr/pgm3
+http authorization required
+realm: Bitbucket.org HTTP
+user: stummjr
+password:
+searching for changes
+remote: adding changesets
+remote: adding manifests
+remote: adding file changes
+remote: added 2 changesets with 3 changes to 2 files
+-----
+
+[NOTE]
+=====
+Observe que a URL passada ao `hg push` é a URL do repositório recém criado no Bitbucket, com o nome do usuário precedendo o endereço `bitbucket.org` (`stummjr@bitbucket.org`).
+
+Se você ficar na dúvida sobre qual é a URL que deve ser passada ao `push`, clique na opção __"I have an existing project"__ e o Bitbucket irá lhe mostrar a URL e o comando que deve ser executado. Veja na imagem abaixo:
+
+[[img6]]
+image::6.png[width=600]
+=====
+
+Agora que temos nosso repositório local vinculado ao repositório remoto, podemos continuar trabalhando com o Mercurial da mesma forma que fizemos até então, porém, quando quisermos enviar nossas alterações para o repositório remoto (bitbucket), basta executar o comando `hg push` (não precisa mais passar a URL, pois a mesma já foi vinculada ao repositório local).
+
+Quando quisermos trabalhar em um computador que não tenha o repositório, podemos fazer um clone do mesmo em tal computador, com o comando `hg clone`:
+
+.Clonando o repositório em um novo computador
+[listing]
+-----
+hg clone https://stummjr@bitbucket.org/stummjr/pgm3
+-----
+
+Feito isso, agora podemos trabalhar com nosso código em qualquer lugar, bastando fazer os commits e os pushes quando for adequado.
+
+
+Obtendo as alterções mais recentes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Uma vez que estejamos trabalhando e enviando novas alterações ao repositório central no bitbucket, de vez em quando será necessário atualizar o código local de uma máquina, para que ele receba as alterações mais recentes existentes no bitbucket.
+
+Quando seu código local estiver desatualizado com relação ao remoto, faça um `hg pull`:
+
+[listing]
+$ hg pull -u https://stummjr@bitbucket.org/stummjr/pgm3
+
+Pronto, agora seu repositório local está atualizado com relação ao servidor.
