@@ -8,17 +8,30 @@ html {
     -ms-text-size-adjust: 100%;
 }
 
-body {
+#main {
   color:#444;
   font-family: Georgia, Times, serif;
   font-size:16px;
   line-height:1.5em;
-  background:#fefefe;
+  background-color:#fefefe;
   width: 45em;
   margin: 10px auto;
   padding: 1em;
   padding-bottom: 0.1em;
   border: 1px solid #8e8e8e;
+  border-radius: 25px;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+div.alert {
+    background-color: #FF5555;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+    width: 44%;
+    text-align: left;
+    box-shadow: 5px 5px 5px #888888;
+    float: right;
 }
 
 h1 {
